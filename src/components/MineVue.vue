@@ -11,7 +11,7 @@
     </grid>
 
     <group>
-      <cell :title="i.title" v-for="i in cellsrc" :key="i.title" is-link>
+      <cell :title="i.title" v-for="i in cellsrc" :key="i.title" @click.native="i.click" is-link>
         <img slot="icon" width="20" style="display:block;margin-right:5px;" v-bind:src="i.img">
       </cell>
     </group>
@@ -26,6 +26,9 @@
 import { Blur, Grid, GridItem, GroupTitle, Cell, CellBox, CellFormPreview, Group, Badge } from 'vux'
 import auth from '../aouth/auth'
 import axios from '../axios/https.js'
+import store from '@/store/store'
+import router from '@/router/router'
+import * as types from '@/store/types'
 export default {
   components: {
     Blur,
@@ -62,16 +65,31 @@ export default {
       ],
       cellsrc: [{
         title: '我的红包',
-        img: require('../assets/images/redpackeg.png')
+        img: require('../assets/images/redpackeg.png'),
+        click: function () { }
       }, {
         title: '门店消费积分',
-        img: require('../assets/images/package_remaining.png')
+        img: require('../assets/images/package_remaining.png'),
+        click: function () { }
       }, {
         title: '线上消费积分',
-        img: require('../assets/images/jifen.png')
+        img: require('../assets/images/jifen.png'),
+        click: function () {
+
+        }
       }, {
         title: '我的订单',
-        img: require('../assets/images/dingdan.png')
+        img: require('../assets/images/dingdan.png'),
+        click: function () { }
+      },
+      {
+        title: '退出登陆',
+        img: require('../assets/images/dingdan.png'),
+        click: function () {
+          console.log(store.state)
+          store.commit(types.LOGOUT)
+          router.push('/login')
+        }
       }
       ]
     }
@@ -93,12 +111,12 @@ export default {
       console.log(error)
     })
   },
-  getUrl () {
-
-  },
   methods: {
     onItemClick () {
       console.log('on item click')
+    },
+    jump (url) {
+      this.$router.push(url)
     }
   }
 }

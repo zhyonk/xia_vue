@@ -5,6 +5,7 @@ import Works from '@/components/WorksVue'
 import Shop from '@/components/ShopVue'
 import Mine from '@/components/MineVue'
 import Login from '@/components/Login'
+import Register from '@/components/Register'
 import store from '@/store/store'
 import * as types from '@/store/types'
 Vue.use(Router)
@@ -33,11 +34,15 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login
+  }, {
+    path: '/register',
+    name: 'register',
+    component: Register
   }
 ]
 // 页面刷新时，重新赋值token
-if (window.localStorage.getItem('token')) {
-  store.commit(types.LOGIN, window.localStorage.getItem('token'))
+if (window.sessionStorage.getItem('token')) {
+  store.commit(types.LOGIN, window.sessionStorage.getItem('token'))
 }
 
 const router = new Router({
@@ -47,6 +52,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(r => r.meta.requireAuth)) {
     console.log('这个请求需要验证')
+    console.log(store)
     if (store.state.token) {
       console.log('store中的token不为空,已经登陆token为： ')
       console.log(store.state.token)
