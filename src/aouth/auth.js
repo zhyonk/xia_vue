@@ -10,7 +10,7 @@ export default {
   },
   login (context, info) {
     net.postJson('/user/login', info, function (token) {
-      localStorage.setItem('token', token)
+      sessionStorage.setItem('token', token)
       this.$router.push('home')
     })
     context.$http.post(LOGIN_URL, info).then(function (data) {
@@ -18,7 +18,7 @@ export default {
       var re = data.body
       console.log(re.ok)
       if (re.ok) {
-        localStorage.setItem('token', re.data)
+        sessionStorage.setItem('token', re.data)
         this.authenticated = true
         this.$router.push('home')
       } else {
@@ -31,11 +31,11 @@ export default {
   },
   getAuthHeader () {
     return {
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token')
     }
   },
   checkAuth () {
-    var token = localStorage.getItem('token')
+    var token = sessionStorage.getItem('token')
     if (token) {
       this.authenticated = true
       return true

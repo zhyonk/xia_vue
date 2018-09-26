@@ -10,7 +10,7 @@ export default {
    * 检查token是否合法，需要服务器认证
    */
   isTokenValid () {
-    var token = localStorage.getItem('token')
+    var token = sessionStorage.getItem('token')
     if (token) {
       this.get('/oauth/checkToken?token=' + token, function () {
         return true
@@ -24,7 +24,7 @@ export default {
    * token放在header里后台接受不到，放在参数里一起传递
    */
   postJson (url, json, callback) {
-    var token = localStorage.getItem('token')
+    var token = sessionStorage.getItem('token')
     console.log(url)
     if (token || url === '/user/login') {
       json.Authorization = 'Bearer ' + token
@@ -49,7 +49,7 @@ export default {
     }
   },
   get (url, callback, context) {
-    var token = localStorage.getItem('token')
+    var token = sessionStorage.getItem('token')
     if (token) {
       $.ajax({
         url: url,
@@ -98,7 +98,7 @@ export default {
     }
   },
   post (url, json, callback, context) {
-    var token = localStorage.getItem('token')
+    var token = sessionStorage.getItem('token')
     if (token) {
       json.Authorization = 'Bearer ' + token
       $.ajax({

@@ -1,15 +1,21 @@
 <template>
   <div>
-    <h2>登录</h2>
+    <h2>注册</h2>
     <group title="请输入手机号">
       <x-input title="手机号码：" name="mobile" placeholder="请输入手机号码" keyboard="number" is-type="china-mobile" v-model="info.phone"></x-input>
     </group>
-    <group title="请输入密码">
-      <x-input title=" 密码： " placeholder="请输入密码" v-model="info.password"></x-input>
+    <!-- <group title="验证码">
+      <x-input title="发送验证码" class="weui-vcode">
+        <x-button slot="right" type="primary" mini>发送验证码</x-button>
+      </x-input>
+    </group> -->
+    <group title="确认输入">
+      <x-input title="请输入密码" type="text" placeholder="" v-model="password" ></x-input>
+      <x-input title="请确认密码" v-model="password2" type="text" placeholder="" :equal-with="password"></x-input>
     </group>
+  
     <br>
-    <x-button type="primary" @click.native="submit()">登陆</x-button>
-    <x-button  @click.native="register()">注册</x-button> 
+    <x-button  @click.native="commit()">提交</x-button>
      <loading v-model="showLoading" :text="loadText"></loading>
   </div>
 </template>
@@ -31,8 +37,10 @@ export default {
   },
   data () {
     return {
+      password: '',
+      password2: '',
       showLoading: false,
-      loadText: '正在登陆',
+      loadText: '正在注册，请稍后....',
       info: {
         phone: '',
         password: ''
@@ -41,7 +49,7 @@ export default {
     }
   },
   methods: {
-    submit () {
+    commit () {
       let _this = this
       _this.showLoading = true
       var info = {
@@ -51,7 +59,7 @@ export default {
       let context = this
       console.log(info)
       net.postJson('/user/login', info, function (data) {
-        _this.loadText = '登录成功'
+        _this.loadText = '注册成功'
         _this.showLoading = false
         sessionStorage.setItem('token', data.token)
         sessionStorage.setItem('uid', data.uid)
@@ -59,9 +67,6 @@ export default {
         auth.authenticated = true
         context.$router.push('/reservation')
       })
-    },
-    register () {
-      this.$router.push('/register')
     }
   }
 }
