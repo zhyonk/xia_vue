@@ -24,7 +24,7 @@
 
 <script>
 import { Blur, Grid, GridItem, GroupTitle, Cell, CellBox, CellFormPreview, Group, Badge } from 'vux'
-import auth from '../aouth/auth'
+// import auth from '../aouth/auth'
 import axios from '../axios/https.js'
 import store from '@/store/store'
 import router from '@/router/router'
@@ -52,7 +52,11 @@ export default {
       laber: [
         {
           title: '会员卡',
-          img: require('../assets/images/member_card.png')
+          img: require('../assets/images/member_card.png'),
+          click: function () {
+            router.push('/membercard')
+          }
+
         }, {
           title: '套餐剩余',
           img: require('../assets/images/bing.png')
@@ -86,7 +90,6 @@ export default {
         title: '退出登陆',
         img: require('../assets/images/dingdan.png'),
         click: function () {
-          console.log(store.state)
           store.commit(types.LOGOUT)
           router.push('/login')
         }
@@ -96,10 +99,11 @@ export default {
   },
   beforeCreate () {
     // 如果没有token的话需要重新登录
-    console.log('有token存在,不需要登录')
-    if (!auth.checkAuth()) {
-      this.$router.push('login')
-    }
+    // console.log('有token存在,不需要登录')
+    // if (!auth.checkAuth()) {
+    //   this.$router.push('login')
+    // }
+    // console.log(this.$router.params.openid)
   },
   mounted: function () {
     var _this = this
