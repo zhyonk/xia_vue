@@ -323,6 +323,8 @@
 
 <script>
 import { ViewBox, Tabbar, TabbarItem, Group, Cell, XHeader, Sticky, Tab, TabItem, Swiper } from 'vux'
+import store from '@/store/store'
+import * as types from '@/store/types'
 const imgList = [
   'http://placeholder.qiniudn.com/800x300/FF3B3B/ffffff',
   'http://placeholder.qiniudn.com/800x300/FFEF7D/ffffff',
@@ -352,7 +354,12 @@ export default {
       demo03_list: demoList
     }
   },
+  mounted: function () {
+    console.log(this.$route.params.openid)
+    store.commit(types.OPENID, this.$route.params.openid)
+  },
   methods: {
+
   }
 }
 </script>
