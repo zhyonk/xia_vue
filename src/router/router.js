@@ -6,13 +6,16 @@ import Shop from '@/components/ShopVue'
 import Mine from '@/components/MineVue'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
+import Follow from '@/components/Follow'
+import MemberCard from '@/components/MemberCard'
+
 import store from '@/store/store'
 import * as types from '@/store/types'
 Vue.use(Router)
 
 const routes = [
   {
-    path: '/reservation',
+    path: '/reservation/:openid',
     name: 'reservation',
     component: Reservation
   }, {
@@ -26,9 +29,6 @@ const routes = [
   }, {
     path: '/mine',
     name: 'mine',
-    meta: {
-      requireAuth: true
-    },
     component: Mine
   }, {
     path: '/login',
@@ -38,6 +38,17 @@ const routes = [
     path: '/register',
     name: 'register',
     component: Register
+  }, {
+    path: '/follow',
+    name: 'follow',
+    component: Follow
+  }, {
+    path: '/membercard',
+    name: 'membercard',
+    meta: {
+      requireAuth: true
+    },
+    component: MemberCard
   }
 ]
 // 页面刷新时，重新赋值token
@@ -65,6 +76,7 @@ router.beforeEach((to, from, next) => {
       })
     }
   } else {
+    console.log('这个请求不需要验证')
     next()
   }
 })
