@@ -3,7 +3,7 @@
   <div id="app">
      <router-view></router-view>
     <tabbar id='bottomTab'>
-      <tabbar-item link="/reservation">
+      <tabbar-item selected link="/reservation">
              <img slot="icon" src="./assets/demo/icon_nav_button.png">
             <span slot="label">预约</span>
       </tabbar-item>
@@ -11,7 +11,7 @@
         <img slot="icon" src="./assets/demo/icon_nav_msg.png">
         <span slot="label">作品</span>
       </tabbar-item>
-      <tabbar-item selected link="/shop">
+      <tabbar-item  link="/shop">
         <img slot="icon" src="./assets/demo/icon_nav_article.png">
         <span slot="label">商品</span>
       </tabbar-item> 
@@ -48,6 +48,9 @@ export default {
     Tab,
     TabItem,
     ViewBox
+  },
+  mounted: function () {
+    this.$router.push('/reservation')
   },
   methods: {
     onIndexChange: function () {},
