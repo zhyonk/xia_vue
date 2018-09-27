@@ -10,7 +10,8 @@ export default new Vuex.Store({
   state: {
     user: {},
     token: null,
-    title: ''
+    title: '',
+    openid: ''
   },
   mutations: {
     [types.LOGIN]: (state, data) => {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     },
     [types.TITLE]: (state, data) => {
       state.title = data
+    },
+    [types.OPENID]: (state, data) => {
+      state.openid = data
     }
   }
 })
