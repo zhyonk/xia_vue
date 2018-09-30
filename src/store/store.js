@@ -15,7 +15,7 @@ export default new Vuex.Store({
   },
   mutations: {
     [types.LOGIN]: (state, data) => {
-      sessionStorage.token = data
+      sessionStorage.setItem('token', data)
       state.token = data
     },
     [types.LOGOUT]: (state) => {
@@ -26,6 +26,7 @@ export default new Vuex.Store({
       state.title = data
     },
     [types.OPENID]: (state, data) => {
+      sessionStorage.setItem('openid', data)
       state.openid = data
     }
   }

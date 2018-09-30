@@ -50,7 +50,13 @@ export default {
     ViewBox
   },
   mounted: function () {
-    this.$router.push('/reservation')
+    var openId = sessionStorage.getItem('openid')
+    console.log('在app.vue中的openid：' + openId)
+    if (openId) {
+      this.$router.push('/reservation/')
+    } else {
+
+    }
   },
   methods: {
     onIndexChange: function () {},

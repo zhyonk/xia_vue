@@ -9,7 +9,7 @@ import router from '../router/router'
 
 // axios 配置
 axios.defaults.timeout = 5000
-axios.defaults.baseURL = ' http://0c8b6f82.ngrok.io/xia-wechat/'
+axios.defaults.baseURL = ' http://e9f07b69.ngrok.io/xia-wechat/'
 
 // http request 拦截器
 axios.interceptors.request.use(
