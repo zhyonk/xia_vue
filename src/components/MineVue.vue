@@ -107,13 +107,23 @@ export default {
   },
   mounted: function () {
     var _this = this
-    axios.post('/user/getUserInfo').then(function (response) {
-      var wechatInfo = response.data.data.wechatInfo
-      console.log(this)
-      _this.url = wechatInfo.headImgUrl
-    }).catch(function (error) {
-      console.log(error)
-    })
+    var openid = sessionStorage.getItem('openid')
+    console.log('mine page openid: ' + openid)
+    var info = sessionStorage.getItem('wechatUserInfo')
+    if (info) {
+      info = JSON.parse(info)
+      _this.url = info.headImgUrl
+    } else {
+      axios.get('/wechat/getUserInfo', {params: {openid: openid}}, {headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }}).then(function (response) {
+        var wechatInfo = response.data.data.wechatInfo
+        sessionStorage.setItem('wechatUserInfo', JSON.stringify(wechatInfo))
+        _this.url = wechatInfo.headImgUrl
+      }).catch(function (error) {
+        console.log(error)
+      })
+    }
   },
   methods: {
     onItemClick () {

@@ -1,7 +1,7 @@
 
 import net from '../utils/net'
 
-const SERVER_URL = 'http://localhost:8083/xia-wechat/'
+const SERVER_URL = 'http://ece8dda8.ngrok.io/xia-wechat'
 const LOGIN_URL = SERVER_URL + '/user/login'
 
 export default {

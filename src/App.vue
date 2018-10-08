@@ -3,7 +3,7 @@
   <div id="app">
      <router-view></router-view>
     <tabbar id='bottomTab'>
-      <tabbar-item selected link="/reservation">
+      <tabbar-item selected v-bind:link="reservationLink">
              <img slot="icon" src="./assets/demo/icon_nav_button.png">
             <span slot="label">预约</span>
       </tabbar-item>
@@ -52,15 +52,15 @@ export default {
   mounted: function () {
     var openId = sessionStorage.getItem('openid')
     console.log('在app.vue中的openid：' + openId)
-    if (openId) {
-      this.$router.push('/reservation/')
-    } else {
-
-    }
   },
   methods: {
     onIndexChange: function () {},
     onItemClick: function () {}
+  },
+  data () {
+    return {
+      reservationLink: '/reservation/' + sessionStorage.getItem('openid')
+    }
   }
 }
 </script>
