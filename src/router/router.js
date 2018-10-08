@@ -57,6 +57,7 @@ if (window.sessionStorage.getItem('token')) {
 }
 
 const router = new Router({
+  mode: 'history',
   routes
 })
 

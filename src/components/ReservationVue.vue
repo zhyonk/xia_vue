@@ -355,7 +355,7 @@ export default {
     }
   },
   mounted: function () {
-    console.log(this.$route.params.openid)
+    console.log('openid:' + this.$route.params.openid)
     store.commit(types.OPENID, this.$route.params.openid)
   },
   methods: {
