@@ -3,15 +3,14 @@
     <blur :blur-amount=40 :url="url">
       <p class="center"><img :src="url"></p>
     </blur>
-
        <grid :show-lr-borders="false">
-      <grid-item :label='i.title' v-for="i in laber" :key="i.title">
+      <grid-item :label='i.title' v-for="i in headItem" :key="i.title" @click.native="i.click">
         <img slot="icon" v-bind:src="i.img">
       </grid-item>
     </grid>
 
     <group>
-      <cell :title="i.title" v-for="i in cellsrc" :key="i.title" @click.native="i.click" is-link>
+      <cell :title="i.title" v-for="i in itemList" :key="i.title" @click.native="i.click" is-link>
         <img slot="icon" width="20" style="display:block;margin-right:5px;" v-bind:src="i.img">
       </cell>
     </group>
@@ -43,31 +42,9 @@ export default {
   },
   data () {
     return {
-      images: [
-        'https://o3e85j0cv.qnssl.com/tulips-1083572__340.jpg',
-        'https://o3e85j0cv.qnssl.com/waterway-107810__340.jpg',
-        'https://o3e85j0cv.qnssl.com/hot-chocolate-1068703__340.jpg'
-      ],
-      url: 'https://o3e85j0cv.qnssl.com/tulips-1083572__340.jpg',
-      laber: [
-        {
-          title: '会员卡',
-          img: require('../assets/images/member_card.png'),
-          click: function () {
-            router.push('/membercard')
-          }
-
-        }, {
-          title: '套餐剩余',
-          img: require('../assets/images/bing.png')
-        }, {
-          title: '消费记录',
-          img: require('../assets/images/record.png')
-        }, {
-          title: '我的预约',
-          img: require('../assets/images/reservation.png')}
-      ],
-      cellsrc: [{
+      url: this.getHeadUrl(),
+      headItem: this.getHeadItem(),
+      itemList: [{
         title: '我的红包',
         img: require('../assets/images/redpackeg.png'),
         click: function () { }
@@ -106,31 +83,41 @@ export default {
     // console.log(this.$router.params.openid)
   },
   mounted: function () {
-    var _this = this
-    var openid = sessionStorage.getItem('openid')
-    console.log('mine page openid: ' + openid)
-    var info = sessionStorage.getItem('wechatUserInfo')
-    if (info) {
-      info = JSON.parse(info)
-      _this.url = info.headImgUrl
-    } else {
-      axios.get('/wechat/getUserInfo', {params: {openid: openid}}, {headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }}).then(function (response) {
-        var wechatInfo = response.data.data.wechatInfo
-        sessionStorage.setItem('wechatUserInfo', JSON.stringify(wechatInfo))
-        _this.url = wechatInfo.headImgUrl
-      }).catch(function (error) {
-        console.log(error)
-      })
-    }
   },
   methods: {
     onItemClick () {
       console.log('on item click')
     },
-    jump (url) {
-      this.$router.push(url)
+    getHeadUrl () {
+      var openid = sessionStorage.getItem('openid')
+      console.log('mine page openid: ' + openid)
+      var info = sessionStorage.getItem('wechatUserInfo')
+      if (info) {
+        console.log('sessionStorage中有UserInfo: ' + info)
+        return JSON.parse(info).headImgUrl
+      } else {
+        axios.get('/wechat/getUserInfo', {params: {openid: openid}}, {headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }}).then(function (response) {
+          var wechatInfo = response.data.data.wechatInfo
+          sessionStorage.setItem('wechatUserInfo', JSON.stringify(wechatInfo))
+          return wechatInfo.headImgUrl
+        }).catch(function (error) {
+          console.log(error)
+        })
+      }
+    },
+    getHeadItem () {
+      var token = sessionStorage.getItem('token')
+      if (token) {
+
+      } else {
+        var item = {}
+        var result = new Array()
+        
+        result  = 
+      }
+      return ''
     }
   }
 }
