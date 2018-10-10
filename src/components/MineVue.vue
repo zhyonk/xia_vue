@@ -43,7 +43,25 @@ export default {
   data () {
     return {
       url: this.getHeadUrl(),
-      headItem: this.getHeadItem(),
+      headItem: [
+        {
+          title: '会员卡',
+          img: require('../assets/images/member_card.png'),
+          click: function () {}
+        }, {
+          title: '套餐剩余',
+          img: require('../assets/images/bing.png'),
+          click: function () {}
+        }, {
+          title: '消费记录',
+          img: require('../assets/images/record.png'),
+          click: function () {}
+        }, {
+          title: '我的预约',
+          img: require('../assets/images/reservation.png'),
+          click: function () {}
+        }
+      ],
       itemList: [{
         title: '我的红包',
         img: require('../assets/images/redpackeg.png'),
@@ -112,10 +130,6 @@ export default {
       if (token) {
 
       } else {
-        var item = {}
-        var result = new Array()
-        
-        result  = 
       }
       return ''
     }
