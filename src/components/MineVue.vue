@@ -43,25 +43,7 @@ export default {
   data () {
     return {
       url: this.getHeadUrl(),
-      headItem: [
-        {
-          title: '会员卡',
-          img: require('../assets/images/member_card.png'),
-          click: function () {}
-        }, {
-          title: '套餐剩余',
-          img: require('../assets/images/bing.png'),
-          click: function () {}
-        }, {
-          title: '消费记录',
-          img: require('../assets/images/record.png'),
-          click: function () {}
-        }, {
-          title: '我的预约',
-          img: require('../assets/images/reservation.png'),
-          click: function () {}
-        }
-      ],
+      headItem: this.getHeadItem(),
       itemList: [{
         title: '我的红包',
         img: require('../assets/images/redpackeg.png'),
@@ -110,7 +92,7 @@ export default {
       var openid = sessionStorage.getItem('openid')
       console.log('mine page openid: ' + openid)
       var info = sessionStorage.getItem('wechatUserInfo')
-      if (info) {
+      if (info != null && info !== 'null') {
         console.log('sessionStorage中有UserInfo: ' + info)
         return JSON.parse(info).headImgUrl
       } else {
@@ -126,12 +108,57 @@ export default {
       }
     },
     getHeadItem () {
-      var token = sessionStorage.getItem('token')
-      if (token) {
-
-      } else {
+      var menu = this.getMineMenu()
+      if (menu) {
+        menu = JSON.parse(menu)
+        var jsonStr = menu
+        var arr = []
+        for (var p in jsonStr) { // 遍历json数组时，这么写p为索引，0,1
+          var type = jsonStr[p].type
+          if (type === 1) {
+            var name = jsonStr[p].name
+            var url = jsonStr[p].url
+            var icon = jsonStr[p].icon
+            var sort = jsonStr[p].sort
+            var obj = {
+              title: name,
+              img: icon,
+              click: function () {
+                router.push(url)
+              },
+              sort: sort,
+              icon: icon,
+              type: type
+            }
+            arr.push(obj)
+          }
+        }
+        console.log(arr)
+        return arr
       }
-      return ''
+    },
+    getMineMenu () {
+      var menu = sessionStorage.getItem('menu')
+      if (menu) {
+        // 说明已经获取到了menu数据了，就不重新获取了
+        return menu
+      } else {
+        var openid = sessionStorage.getItem('openid')
+        if (openid) {
+          axios.get('/menu/getMineMenu', {params: {openid: openid}}, {headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }}).then(function (response) {
+            console.log(response.data)
+            var menuObj = response.data.data.menu
+            sessionStorage.setItem('menu', JSON.stringify(menuObj))
+            console.log(menuObj)
+            return menuObj
+          }).catch(function (error) {
+            console.log(error)
+          })
+        }
+      }
+      return null
     }
   }
 }

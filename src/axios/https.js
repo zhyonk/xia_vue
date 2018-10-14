@@ -9,16 +9,15 @@ import router from '../router/router'
 
 // axios 配置
 axios.defaults.timeout = 5000
-axios.defaults.baseURL = 'http://79feff10.ngrok.io/xia-wechat'
+axios.defaults.baseURL = 'http://073b0013.ngrok.io/xia-wechat'
 
 // http request 拦截器
 axios.interceptors.request.use(
   config => {
     if (sessionStorage.getItem('token')) {
+      console.log('这里是axios的httprequest拦截器')
       config.headers.post['Content-Type'] = 'application/json'
-      config.params = {
-        token: sessionStorage.getItem('token')
-      }
+      config.params['token'] = sessionStorage.getItem('token')
     }
     return config
   },
