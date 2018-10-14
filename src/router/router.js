@@ -15,7 +15,7 @@ Vue.use(Router)
 
 const routes = [
   {
-    path: '/reservation/:openid',
+    path: '/reservation',
     name: 'reservation',
     component: Reservation
   }, {

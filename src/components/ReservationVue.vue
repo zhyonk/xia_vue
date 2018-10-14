@@ -355,9 +355,9 @@ export default {
     }
   },
   mounted: function () {
-    console.log('openid:' + this.$route.params.openid)
-    if (this.$route.params.openid && this.$route.params.openid !== 'null') {
-      store.commit(types.OPENID, this.$route.params.openid)
+    if (this.$route.query.token && this.$route.query.openid !== 'null') {
+      store.commit(types.OPENID, this.$route.query.openid)
+      store.commit(types.LOGIN, this.$route.query.token)
     }
   },
   methods: {
