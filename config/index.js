@@ -10,7 +10,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: "http://ece8dda8.ngrok.io/xia-wechat",
+        target: "http://dee7c69e.ngrok.io/xia-wechat",
         pathRewrite: {
           '^/api': ''
         }

@@ -3,13 +3,15 @@
  * http配置
  */
 import axios from 'axios'
+
 import store from '../store/store'
 import * as types from '../store/types'
 import router from '../router/router'
-
+// import Vue from 'vue'
+// import { Actionsheet } from 'vux'
 // axios 配置
 axios.defaults.timeout = 5000
-axios.defaults.baseURL = 'http://dee7c69e.ngrok.io/xia-wechat'
+axios.defaults.baseURL = 'http://46df835d.ngrok.io/xia-wechat'
 
 // http request 拦截器
 axios.interceptors.request.use(
@@ -30,14 +32,9 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => {
     var data = response.data.result
-    if(data){
+    if (data) {
       switch (data.code) {
         case 3004:
-        case 3001:
-        case 3002:
-        case 3003:
-        case 421:
-          
       }
     }
     return response
@@ -60,4 +57,5 @@ axios.interceptors.response.use(
     return Promise.reject(error.response.data)
   }
 )
+
 export default axios
