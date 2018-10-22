@@ -12,12 +12,12 @@
         </tab> -->
         <div class="barberList_storeInfo">
           <div class="container">
-          <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//shop/176810/7c986e5d-aa0f-466a-8628-bd53b2b4fd4a_s.jpg"></div>
-          <a class="call" href="tel:86142316"></a>
+          <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" v-src="shopImg"></div>
+          <a class="call" v-href="shopHrefTel"></a>
           <div class="content">
-            <div class="name">丝奔国际蓝郡店</div>
-            <div class="adress">古墩路蓝郡11号商铺</div>
-            <div class="tel">86142316</div>
+            <div class="name">{{ shopName }}</div>
+            <div class="adress">{{ shopAdress }}</div>
+            <div class="tel">{{shopPhone}}</div>
           </div>
           </div>
           <div class="barberList_bg"></div>
@@ -325,6 +325,7 @@
 import { ViewBox, Tabbar, TabbarItem, Group, Cell, XHeader, Sticky, Tab, TabItem, Swiper } from 'vux'
 import store from '@/store/store'
 import * as types from '@/store/types'
+import axios from '../axios/https.js'
 const imgList = [
   'http://placeholder.qiniudn.com/800x300/FF3B3B/ffffff',
   'http://placeholder.qiniudn.com/800x300/FFEF7D/ffffff',
@@ -355,13 +356,48 @@ export default {
     }
   },
   mounted: function () {
+    var info = this.getShopInfo()
+    if (info) {
+      this.shopName = info.shopName
+      this.shopAddress = info.shopAddressDetail
+      this.shopPhone = info.shopPhone
+      this.shopHrefTel = 'Tel:' + info.shopPhone
+      this.shopImg = info.shopImg
+    }
     if (this.$route.query.token && this.$route.query.openid !== 'null') {
       store.commit(types.OPENID, this.$route.query.openid)
       store.commit(types.LOGIN, this.$route.query.token)
+      axios.get('/wechat/getUserInfo', {params: {openid: this.$route.query.openid}}, {headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }}).then(function (response) {
+        var wechatInfo = response.data.data.wechatInfo
+        sessionStorage.setItem('wechatUserInfo', JSON.stringify(wechatInfo))
+        return wechatInfo.headImgUrl
+      }).catch(function (error) {
+        console.log(error)
+      })
+      axios.get('/menu/getMineMenu', {params: {openid: this.$route.query.openid}}, {headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }}).then(function (response) {
+        console.log(response.data)
+        var menuObj = response.data.data.menu
+        sessionStorage.setItem('menu', JSON.stringify(menuObj))
+        console.log(menuObj)
+        return menuObj
+      }).catch(function (error) {
+        console.log(error)
+      })
     }
   },
   methods: {
-
+    getShopInfo () {
+      axios.get('/wechat/getUserInfo').then(function (response) {
+        var shopInfo = response.data.data.shopInfo
+        return shopInfo
+      }).catch(function (error) {
+        console.log(error)
+      })
+    }
   }
 }
 </script>
