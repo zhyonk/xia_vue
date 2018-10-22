@@ -59,7 +59,7 @@ export default {
   },
   data () {
     return {
-      reservationLink: '/reservation/' + sessionStorage.getItem('openid')
+      reservationLink: '/reservation'
     }
   }
 }
