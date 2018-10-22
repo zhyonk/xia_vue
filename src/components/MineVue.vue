@@ -25,9 +25,9 @@
 import { Blur, Grid, GridItem, GroupTitle, Cell, CellBox, CellFormPreview, Group, Badge } from 'vux'
 // import auth from '../aouth/auth'
 import axios from '../axios/https.js'
-import store from '@/store/store'
+// import store from '@/store/store'
 import router from '@/router/router'
-import * as types from '@/store/types'
+// import * as types from '@/store/types'
 export default {
   components: {
     Blur,
@@ -42,36 +42,9 @@ export default {
   },
   data () {
     return {
-      url: this.getHeadUrl(),
-      headItem: this.getHeadItem(),
-      itemList: [{
-        title: '我的红包',
-        img: require('../assets/images/redpackeg.png'),
-        click: function () { }
-      }, {
-        title: '门店消费积分',
-        img: require('../assets/images/package_remaining.png'),
-        click: function () { }
-      }, {
-        title: '线上消费积分',
-        img: require('../assets/images/jifen.png'),
-        click: function () {
-
-        }
-      }, {
-        title: '我的订单',
-        img: require('../assets/images/dingdan.png'),
-        click: function () { }
-      },
-      {
-        title: '退出登陆',
-        img: require('../assets/images/dingdan.png'),
-        click: function () {
-          store.commit(types.LOGOUT)
-          router.push('/login')
-        }
-      }
-      ]
+      url: 'https://o3e85j0cv.qnssl.com/tulips-1083572__340.jpg',
+      headItem: '',
+      itemList: ''
     }
   },
   beforeCreate () {
@@ -83,6 +56,9 @@ export default {
     // console.log(this.$router.params.openid)
   },
   mounted: function () {
+    this.url = this.getHeadUrl()
+    this.headItem = this.getHeadItem()
+    this.itemList = this.getBottomItem()
   },
   methods: {
     onItemClick () {
@@ -113,9 +89,41 @@ export default {
         menu = JSON.parse(menu)
         var jsonStr = menu
         var arr = []
+        this.sort(jsonStr)
         for (var p in jsonStr) { // 遍历json数组时，这么写p为索引，0,1
           var type = jsonStr[p].type
           if (type === 1) {
+            var name = jsonStr[p].name
+            var url = jsonStr[p].url
+            var icon = jsonStr[p].icon
+            var sort = jsonStr[p].sort
+            var obj = {
+              title: name,
+              img: icon,
+              click: function () {
+                router.push(url)
+              },
+              sort: sort,
+              icon: icon,
+              type: type
+            }
+            arr.push(obj)
+          }
+        }
+        console.log(arr)
+        return arr
+      }
+    },
+    getBottomItem () {
+      var menu = this.getMineMenu()
+      if (menu) {
+        menu = JSON.parse(menu)
+        var jsonStr = menu
+        var arr = []
+        this.sort(jsonStr)
+        for (var p in jsonStr) { // 遍历json数组时，这么写p为索引，0,1
+          var type = jsonStr[p].type
+          if (type === 2) {
             var name = jsonStr[p].name
             var url = jsonStr[p].url
             var icon = jsonStr[p].icon
@@ -150,15 +158,28 @@ export default {
           }}).then(function (response) {
             console.log(response.data)
             var menuObj = response.data.data.menu
-            sessionStorage.setItem('menu', JSON.stringify(menuObj))
-            console.log(menuObj)
-            return menuObj
+            if (menuObj != null) {
+              sessionStorage.setItem('menu', JSON.stringify(menuObj))
+              console.log(menuObj)
+              return menuObj
+            }
           }).catch(function (error) {
             console.log(error)
           })
         }
       }
       return null
+    },
+    sort (arr) {
+      for (var j = 0; j < arr.length - 1; j++) {
+        for (var i = 0; i < arr.length - 1 - j; i++) {
+          if (arr[i].sort > arr[ i + 1 ].sort) {
+            var temp = arr[i]
+            arr[i] = arr[ i + 1 ]
+            arr[ i + 1 ] = temp
+          }
+        }
+      }
     }
   }
 }
