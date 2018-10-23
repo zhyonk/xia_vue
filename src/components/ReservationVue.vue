@@ -12,11 +12,11 @@
         </tab> -->
         <div class="barberList_storeInfo">
           <div class="container">
-          <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" v-src="shopImg"></div>
-          <a class="call" v-href="shopHrefTel"></a>
+          <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" :src="shopImg"></div>
+          <a class="call" :href="shopHrefTel"></a>
           <div class="content">
-            <div class="name">{{ shopName }}</div>
-            <div class="adress">{{ shopAdress }}</div>
+            <!-- <div class="name">{{ shopName }}</div> -->
+            <div class="adress">{{ shopAddress }}</div>
             <div class="tel">{{shopPhone}}</div>
           </div>
           </div>
@@ -352,17 +352,40 @@ export default {
     return {
       // showSpace: false,
       disabled: typeof navigator !== 'undefined' && /iphone/i.test(navigator.userAgent) && /ucbrowser/i.test(navigator.userAgent),
-      demo03_list: demoList
+      demo03_list: demoList,
+      shopName: '',
+      shopAddress: '',
+      shopPhone: '',
+      shopHrefTel: '',
+      shopImg: ''
     }
   },
   mounted: function () {
-    var info = this.getShopInfo()
-    if (info) {
-      this.shopName = info.shopName
-      this.shopAddress = info.shopAddressDetail
-      this.shopPhone = info.shopPhone
-      this.shopHrefTel = 'Tel:' + info.shopPhone
-      this.shopImg = info.shopImg
+    var shopInfo = sessionStorage.getItem('shopInfo')
+    shopInfo = JSON.parse(shopInfo)
+    if (shopInfo) {
+      console.log(shopInfo.shopName)
+      this.shopName = shopInfo.shopName
+      this.shopAddress = shopInfo.shopAddressDetail
+      this.shopPhone = shopInfo.shopPhone
+      this.shopHrefTel = 'Tel:' + shopInfo.shopPhone
+      this.shopImg = shopInfo.shopImg
+    }
+    var _this = this
+    if (shopInfo == null || shopInfo === 'null') {
+      axios.get('/menu/getShopDetail', {params: {openid: this.$route.query.openid}}, { headers: {'Content-Type': 'application/x-www-form-urlencoded'
+      }}).then(function (response) {
+        console.log(response.data)
+        shopInfo = response.data.data.shopInfo
+        sessionStorage.setItem('shopInfo', JSON.stringify(shopInfo))
+        _this.shopName = shopInfo.shopName
+        _this.shopAddress = shopInfo.shopAddressDetail
+        _this.shopPhone = shopInfo.shopPhone
+        _this.shopHrefTel = 'Tel:' + shopInfo.shopPhone
+        _this.shopImg = shopInfo.shopImg
+      }).catch(function (error) {
+        console.log(error)
+      })
     }
     if (this.$route.query.token && this.$route.query.openid !== 'null') {
       store.commit(types.OPENID, this.$route.query.openid)
@@ -390,14 +413,6 @@ export default {
     }
   },
   methods: {
-    getShopInfo () {
-      axios.get('/wechat/getUserInfo').then(function (response) {
-        var shopInfo = response.data.data.shopInfo
-        return shopInfo
-      }).catch(function (error) {
-        console.log(error)
-      })
-    }
   }
 }
 </script>
