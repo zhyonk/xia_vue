@@ -1,6 +1,10 @@
 <template>
  <div  >
-<swiper :list="demo03_list" auto style="width:100%;margin:0 auto;" height="200px" dots-class="custom-bottom" dots-position="center"></swiper>
+<!-- <swiper :list="demo03_list" auto style="width:100%;margin:0 auto;" height="200px" dots-class="custom-bottom" dots-position="center"> </swiper>-->
+<!-- <swiper :list="demo02_list" style="width:85%;margin:0 auto;" :aspect-ratio="300/800" dots-position="center"></swiper> -->
+ <swiper :list="demo01_list" v-model="demo02_index" :min-moving-distance="150" @on-index-change="demo01_onIndexChange"></swiper>
+    
+
     <div>
       <sticky
         ref="sticky"
@@ -326,15 +330,21 @@ import { ViewBox, Tabbar, TabbarItem, Group, Cell, XHeader, Sticky, Tab, TabItem
 import store from '@/store/store'
 import * as types from '@/store/types'
 import axios from '../axios/https.js'
-const imgList = [
-  'http://placeholder.qiniudn.com/800x300/FF3B3B/ffffff',
-  'http://placeholder.qiniudn.com/800x300/FFEF7D/ffffff',
-  'http://placeholder.qiniudn.com/800x300/8AEEB1/ffffff'
-]
-const demoList = imgList.map((one, index) => ({
+
+const baseList = [{
   url: 'javascript:',
-  img: one
-}))
+  img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vvsr72j20p00gogo2.jpg',
+  title: '送你一朵fua'
+}, {
+  url: 'javascript:',
+  img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vw1k2wj20p00goq7n.jpg',
+  title: '送你一辆车'
+}, {
+  url: 'javascript:',
+  img: 'https://static.vux.li/demo/5.jpg', // 404
+  title: '送你一次旅行',
+  fallbackImg: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vw50iwj20ff0aaaci.jpg'
+}]
 export default {
   components: {
     Tabbar,
@@ -352,12 +362,13 @@ export default {
     return {
       // showSpace: false,
       disabled: typeof navigator !== 'undefined' && /iphone/i.test(navigator.userAgent) && /ucbrowser/i.test(navigator.userAgent),
-      demo03_list: demoList,
+      demo01_list: baseList,
       shopName: '',
       shopAddress: '',
       shopPhone: '',
       shopHrefTel: '',
-      shopImg: ''
+      shopImg: '',
+      demo02_index: 1
     }
   },
   mounted: function () {
@@ -375,7 +386,6 @@ export default {
     if (shopInfo == null || shopInfo === 'null') {
       axios.get('/menu/getShopDetail', {params: {openid: this.$route.query.openid}}, { headers: {'Content-Type': 'application/x-www-form-urlencoded'
       }}).then(function (response) {
-        console.log(response.data)
         shopInfo = response.data.data.shopInfo
         sessionStorage.setItem('shopInfo', JSON.stringify(shopInfo))
         _this.shopName = shopInfo.shopName
@@ -410,9 +420,59 @@ export default {
       }).catch(function (error) {
         console.log(error)
       })
+      var bannerList = store.getters.bannerList
+      console.log('store.bannerList: ' + bannerList)
+      if (bannerList === '' || bannerList == null) {
+        axios.get('/menu/getBannerList', {params: {openid: this.$route.query.openid}}, {headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }}).then(function (response) {
+          console.log(response.data)
+          var bannerListObj = response.data.data.bannerList
+          store.commit(types.BANNER, JSON.stringify(bannerListObj))
+          console.log(bannerListObj)
+          var str = bannerListObj
+          var jsonStr = str
+          var arr = []
+          this.sort(jsonStr)
+          for (var p in jsonStr) { // 遍历json数组时，这么写p为索引，0,1
+            var type = jsonStr[p].type
+            if (type === 2) {
+              var title = jsonStr[p].title
+              var url = jsonStr[p].url
+              var img = jsonStr[p].img
+              var sort = jsonStr[p].sort
+              var obj = {
+                title: title,
+                img: img,
+                url: url,
+                sort: sort
+              }
+              arr.push(obj)
+            }
+            console.log(arr)
+            this.baseList = arr
+          }
+        }).catch(function (error) {
+          console.log(error)
+        })
+      }
     }
   },
   methods: {
+    demo01_onIndexChange (index) {
+      this.demo01_index = index
+    },
+    sort (arr) {
+      for (var j = 0; j < arr.length - 1; j++) {
+        for (var i = 0; i < arr.length - 1 - j; i++) {
+          if (arr[i].sort > arr[ i + 1 ].sort) {
+            var temp = arr[i]
+            arr[i] = arr[ i + 1 ]
+            arr[ i + 1 ] = temp
+          }
+        }
+      }
+    }
   }
 }
 </script>

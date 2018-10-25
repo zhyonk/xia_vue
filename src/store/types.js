@@ -12,3 +12,5 @@ export const TITLE = 'title'
 export const OPENID = 'openid'
 
 export const TOKEN = 'token'
+
+export const BANNER = 'token'
