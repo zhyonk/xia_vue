@@ -11,7 +11,8 @@ export default new Vuex.Store({
     user: {},
     token: null,
     title: '',
-    openid: ''
+    openid: '',
+    bannerList: null
   },
   mutations: {
     [types.LOGIN]: (state, data) => {
@@ -28,6 +29,14 @@ export default new Vuex.Store({
     [types.OPENID]: (state, data) => {
       sessionStorage.setItem('openid', data)
       state.openid = data
+    },
+    [types.BANNER]: (state, data) => {
+      state.bannerList = data
+    }
+  },
+  getters: {
+    bannerList: state => {
+      return state.bannerList
     }
   }
 })
