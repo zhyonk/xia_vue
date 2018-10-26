@@ -1,5 +1,5 @@
 <template>
- <div  >
+ <div>
 <!-- <swiper :list="demo03_list" auto style="width:100%;margin:0 auto;" height="200px" dots-class="custom-bottom" dots-position="center"> </swiper>-->
 <!-- <swiper :list="demo02_list" style="width:85%;margin:0 auto;" :aspect-ratio="300/800" dots-position="center"></swiper> -->
  <swiper :list="demo01_list" v-model="demo02_index" :min-moving-distance="150" @on-index-change="demo01_onIndexChange"></swiper>
@@ -10,16 +10,12 @@
         ref="sticky"
         :check-sticky-support="false"
         :disabled="disabled">
-<!--         <tab :line-width="1">
-          <tab-item selected>正在正映</tab-item>
-          <tab-item>即将上映</tab-item>
-        </tab> -->
         <div class="barberList_storeInfo">
           <div class="container">
           <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" :src="shopImg"></div>
           <a class="call" :href="shopHrefTel"></a>
           <div class="content">
-            <!-- <div class="name">{{ shopName }}</div> -->
+            <div class="name">{{ shopName }}</div>
             <div class="adress">{{ shopAddress }}</div>
             <div class="tel">{{shopPhone}}</div>
           </div>
@@ -29,299 +25,46 @@
 
       </sticky>
     </div>
-    <div class="barberList_ul1"><li class="am-clickable">
-<div class="l1">
-  <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/2604124_s.jpg?t=1528889398731"></div>
-  <div class="name">阿洛</div>
-  <div class="level">设计师</div>
-  <div class="price_label" style="display: block;">
-    <span class="label">剪发价</span>
-    <span class="price">￥<strong>48</strong></span>
-  </div>
-  </div>
-  <div class="l2">
-  <div class="reservation_btn am-clickable">预约</div>
-  <div class="tags" style="display: block;">点击头像可以了解更多信息哦~</div>
-  <div class="numbers">
-  <div class="comment">
-  <div class="n">好评率:
-     <span class="num">100%</span>
-  </div>
-  </div>
-  <div class="rvCount">
-  <div class="n">已被约:
-    <span class="num">25</span>
-  </div>
-  </div>
-  <div class="archiveCount">
-  <div class="n">作品集:
-  <span class="num">0</span>
-  </div>
-  </div>
-  </div>
-  </div>
-  </li><li class="am-clickable">
-  <div class="l1">
-  <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/2748754_s.jpg?t=1533819967372"></div>
-  <div class="name">梦豪</div>
-  <div class="level">高级美容师</div>
-  <div class="price_label" style="display: none;">
-  <span class="label">剪发价</span>
-  <span class="price">￥
-  <strong></strong>
-  </span>
-  </div>
-  </div>
-  <div class="l2">
-  <div class="reservation_btn am-clickable">预约</div>
-  <div class="tags" style="display: block;">点击头像可以了解更多信息哦~</div>
-  <div class="numbers">
-  <div class="comment">
-  <div class="n">好评率:
-  <span class="num">--</span>
-  </div>
-  </div>
-  <div class="rvCount">
-  <div class="n">已被约:
-  <span class="num">6</span>
-  </div>
-  </div>
-  <div class="archiveCount">
-  <div class="n">作品集:
-  <span class="num">0</span>
-  </div>
-  </div>
-  </div>
-  </div>
-  </li><li class="am-clickable">
-  <div class="l1">
-  <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/2249914_s.jpg?t=1514368630461"></div>
-  <div class="name">可晴</div>
-  <div class="level">高级美容师</div>
-  <div class="price_label" style="display: none;">
-  <span class="label">剪发价</span>
-  <span class="price">￥
-  <strong></strong>
-  </span>
-  </div>
-  </div>
-  <div class="l2">
-  <div class="reservation_btn am-clickable">预约</div>
-  <div class="tags" style="display: block;">点击头像可以了解更多信息哦~</div>
-  <div class="numbers">
-  <div class="comment">
-  <div class="n">好评率:
-  <span class="num">--</span>
-  </div>
-  </div>
-  <div class="rvCount">
-  <div class="n">已被约:
-  <span class="num">29</span>
-  </div>
-  </div>
-  <div class="archiveCount">
-  <div class="n">作品集:
-  <span class="num">2</span>
-  </div>
-  </div>
-  </div>
-  </div>
-  </li><li class="am-clickable">
-  <div class="l1">
-  <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/2249913_s.jpg?t=1532159144838"></div>
-  <div class="name">筱曼</div>
-  <div class="level">美容经理</div>
-  <div class="price_label" style="display: none;">
-  <span class="label">剪发价</span>
-  <span class="price">￥
-  <strong></strong>
-  </span>
-  </div>
-  </div>
-  <div class="l2">
-  <div class="reservation_btn am-clickable">预约</div>
-  <div class="tags" style="display: block;">点击头像可以了解更多信息哦~</div>
-  <div class="numbers">
-  <div class="comment">
-  <div class="n">好评率:
-  <span class="num">--</span>
-  </div>
-  </div>
-  <div class="rvCount">
-  <div class="n">已被约:
-  <span class="num">37</span>
-  </div>
-  </div>
-  <div class="archiveCount">
-  <div class="n">作品集:
-  <span class="num">6</span>
-  </div>
-  </div>
-  </div>
-  </div>
-  </li><li class="am-clickable">
-  <div class="l1">
-  <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/1692246_s.jpg?t=1493394437422"></div>
-  <div class="name">5号阿文</div>
-  <div class="level">首席</div>
-  <div class="price_label" style="display: block;">
-  <span class="label">剪发价</span>
-  <span class="price">￥<strong>78</strong></span>
-  </div>
-  </div>
-  <div class="l2">
-  <div class="reservation_btn am-clickable">预约</div>
-  <div class="tags" style="display: block;">点击头像可以了解更多信息哦~</div>
-  <div class="numbers">
-  <div class="comment">
-  <div class="n">好评率:
-  <span class="num">100%</span>
-  </div>
-  </div>
-  <div class="rvCount">
-  <div class="n">已被约:
-  <span class="num">296</span>
-  </div>
-  </div>
-  <div class="archiveCount">
-  <div class="n">作品集:
-  <span class="num">3</span>
-  </div>
-  </div>
-  </div>
-  </div>
-  </li><li class="am-clickable">
-  <div class="l1">
-  <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/2748744_s.jpg?t=1532158909115"></div>
-  <div class="name">梦婷</div>
-  <div class="level">高级美容师</div>
-  <div class="price_label" style="display: none;">
-  <span class="label">剪发价</span>
-  <span class="price">￥
-  <strong></strong>
-  </span>
-  </div>
-  </div>
-  <div class="l2">
-  <div class="reservation_btn am-clickable">预约</div>
-  <div class="tags" style="display: block;">点击头像可以了解更多信息哦~</div>
-  <div class="numbers">
-  <div class="comment">
-  <div class="n">好评率:
-  <span class="num">--</span>
-  </div>
-  </div>
-  <div class="rvCount">
-  <div class="n">已被约:
-  <span class="num">25</span>
-  </div>
-  </div>
-  <div class="archiveCount">
-  <div class="n">作品集:
-  <span class="num">0</span>
-  </div>
-  </div>
-  </div>
-  </div>
-  </li><li class="am-clickable">
-  <div class="l1">
-  <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/1983554_s.jpg?t=1492949367541"></div>
-  <div class="name">9号陈坤</div>
-  <div class="level">设计师</div>
-  <div class="price_label" style="display: block;">
-  <span class="label">剪发价</span>
-  <span class="price">￥<strong>48</strong></span>
-  </div>
-  </div>
-  <div class="l2">
-  <div class="reservation_btn am-clickable">预约</div>
-  <div class="tags">
-  <span class="tag">日系潮流发型</span><span class="tag">男士复古油头</span></div>
-  <div class="numbers">
-  <div class="comment">
-  <div class="n">好评率:
-  <span class="num">80%</span>
-  </div>
-  </div>
-  <div class="rvCount">
-  <div class="n">已被约:
-  <span class="num">99</span>
-  </div>
-  </div>
-  <div class="archiveCount">
-  <div class="n">作品集:
-  <span class="num">1</span>
-  </div>
-  </div>
-  </div>
-  </div>
-  </li><li class="am-clickable">
-  <div class="l1">
-  <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/1824901_s.jpg?t=1498533905429"></div>
-  <div class="name">Gary</div>
-  <div class="level">首席</div>
-  <div class="price_label" style="display: block;">
-  <span class="label">剪发价</span>
-  <span class="price">￥<strong>78</strong></span>
-  </div>
-  </div>
-  <div class="l2">
-  <div class="reservation_btn am-clickable">预约</div>
-  <div class="tags">
-  <span class="tag">风格定制分析</span><span class="tag">酷感短发</span><span class="tag">韩式发型</span><span class="tag">各种网红造型摄影</span></div>
-  <div class="numbers">
-  <div class="comment">
-  <div class="n">好评率:
-  <span class="num">100%</span>
-  </div>
-  </div>
-  <div class="rvCount">
-  <div class="n">已被约:
-  <span class="num">205</span>
-  </div>
-  </div>
-  <div class="archiveCount">
-  <div class="n">作品集:
-  <span class="num">3</span>
-  </div>
-  </div>
-  </div>
-  </div>
-  </li><li class="am-clickable">
-  <div class="l1">
-  <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/1692236_s.jpg?t=1494074077054"></div>
-  <div class="name">阿奇</div>
-  <div class="level">总监</div>
-  <div class="price_label" style="display: block;">
-  <span class="label">剪发价</span>
-  <span class="price">￥<strong>118</strong></span>
-  </div>
-  </div>
-  <div class="l2">
-  <div class="reservation_btn am-clickable">预约</div>
-  <div class="tags">
-  <span class="tag">短发王子</span><span class="tag">人物发型风格设计专家</span></div>
-  <div class="numbers">
-  <div class="comment">
-  <div class="n">好评率:
-  <span class="num">100%</span>
-  </div>
-  </div>
-  <div class="rvCount">
-  <div class="n">已被约:
-  <span class="num">463</span>
-  </div>
-  </div>
-  <div class="archiveCount">
-  <div class="n">作品集:
-  <span class="num">2</span>
-  </div>
-  </div>
-  </div>
-  </div>
-  </li>
-  </div>
-  </div>
+    <div class="barberList_ul1">
+        <li class="am-clickable">
+            <div class="l1">
+                <div class="img am-clickable">
+                    <img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/1824901_s.jpg?t=1498533905429">
+                </div>
+                <div class="name">Gary</div>
+                <div class="level">首席</div>
+                <div class="price_label" style="display: block;">
+                <span class="label">剪发价</span>
+                <span class="price">￥
+                    <strong>78</strong>
+                </span>
+            </div>
+            </div>
+            <div class="l2">
+            <div class="reservation_btn am-clickable">预约</div>
+            <div class="tags">
+            <span class="tag">风格定制分析</span><span class="tag">酷感短发</span><span class="tag">韩式发型</span><span class="tag">各种网红造型摄影</span></div>
+            <div class="numbers">
+            <div class="comment">
+            <div class="n">好评率:
+            <span class="num">100%</span>
+            </div>
+            </div>
+            <div class="rvCount">
+            <div class="n">已被约:
+            <span class="num">205</span>
+            </div>
+            </div>
+            <div class="archiveCount">
+            <div class="n">作品集:
+            <span class="num">3</span>
+            </div>
+            </div>
+            </div>
+            </div>
+        </li>
+ </div>
+</div>
 </template>
 
 
@@ -331,20 +74,6 @@ import store from '@/store/store'
 import * as types from '@/store/types'
 import axios from '../axios/https.js'
 
-const baseList = [{
-  url: 'javascript:',
-  img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vvsr72j20p00gogo2.jpg',
-  title: '送你一朵fua'
-}, {
-  url: 'javascript:',
-  img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vw1k2wj20p00goq7n.jpg',
-  title: '送你一辆车'
-}, {
-  url: 'javascript:',
-  img: 'https://static.vux.li/demo/5.jpg', // 404
-  title: '送你一次旅行',
-  fallbackImg: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vw50iwj20ff0aaaci.jpg'
-}]
 export default {
   components: {
     Tabbar,
@@ -362,7 +91,7 @@ export default {
     return {
       // showSpace: false,
       disabled: typeof navigator !== 'undefined' && /iphone/i.test(navigator.userAgent) && /ucbrowser/i.test(navigator.userAgent),
-      demo01_list: baseList,
+      demo01_list: [],
       shopName: '',
       shopAddress: '',
       shopPhone: '',
@@ -375,7 +104,6 @@ export default {
     var shopInfo = sessionStorage.getItem('shopInfo')
     shopInfo = JSON.parse(shopInfo)
     if (shopInfo) {
-      console.log(shopInfo.shopName)
       this.shopName = shopInfo.shopName
       this.shopAddress = shopInfo.shopAddressDetail
       this.shopPhone = shopInfo.shopPhone
@@ -412,51 +140,22 @@ export default {
       axios.get('/menu/getMineMenu', {params: {openid: this.$route.query.openid}}, {headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }}).then(function (response) {
-        console.log(response.data)
         var menuObj = response.data.data.menu
         sessionStorage.setItem('menu', JSON.stringify(menuObj))
-        console.log(menuObj)
         return menuObj
       }).catch(function (error) {
         console.log(error)
       })
-      var bannerList = store.getters.bannerList
-      console.log('store.bannerList: ' + bannerList)
-      if (bannerList === '' || bannerList == null) {
-        axios.get('/menu/getBannerList', {params: {openid: this.$route.query.openid}}, {headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }}).then(function (response) {
-          console.log(response.data)
-          var bannerListObj = response.data.data.bannerList
-          store.commit(types.BANNER, JSON.stringify(bannerListObj))
-          console.log(bannerListObj)
-          var str = bannerListObj
-          var jsonStr = str
-          var arr = []
-          this.sort(jsonStr)
-          for (var p in jsonStr) { // 遍历json数组时，这么写p为索引，0,1
-            var type = jsonStr[p].type
-            if (type === 2) {
-              var title = jsonStr[p].title
-              var url = jsonStr[p].url
-              var img = jsonStr[p].img
-              var sort = jsonStr[p].sort
-              var obj = {
-                title: title,
-                img: img,
-                url: url,
-                sort: sort
-              }
-              arr.push(obj)
-            }
-            console.log(arr)
-            this.baseList = arr
-          }
-        }).catch(function (error) {
-          console.log(error)
-        })
-      }
     }
+    this.getBannerBaseList()
+  },
+  beforeCreate () {
+    // 如果没有token的话需要重新登录
+    // console.log('有token存在,不需要登录')
+    // if (!auth.checkAuth()) {
+    //   this.$router.push('login')
+    // }
+    // console.log(this.$router.params.openid)
   },
   methods: {
     demo01_onIndexChange (index) {
@@ -471,6 +170,57 @@ export default {
             arr[ i + 1 ] = temp
           }
         }
+      }
+      return arr
+    },
+    getBannerBaseList () {
+      var bannerList = store.getters.bannerList
+      var openid = store.getters.openid
+      var _this = this
+      if (bannerList === '' || bannerList == null) {
+        axios.get('/menu/getBannerList', {params: {openid: openid}}, {headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }}).then(function (response) {
+          var bannerListObj = response.data.data.bannerList
+          store.commit(types.BANNER, JSON.stringify(bannerListObj))
+          var jsonStr = bannerListObj
+          var arr = []
+          jsonStr = _this.sort(jsonStr)
+          for (var p in jsonStr) { // 遍历json数组时，这么写p为索引，0,1
+            var title = jsonStr[p].title
+            var url = jsonStr[p].url
+            var img = jsonStr[p].img
+            var sort = jsonStr[p].sort
+            var obj = {
+              title: title,
+              img: img,
+              url: url,
+              sort: sort
+            }
+            arr.push(obj)
+          }
+          _this.demo01_list = arr
+        }).catch(function (error) {
+          console.log(error)
+        })
+      } else {
+        var jsonStr = JSON.parse(bannerList)
+        var arr = []
+        jsonStr = _this.sort(jsonStr)
+        for (var p in jsonStr) { // 遍历json数组时，这么写p为索引，0,1
+          var title = jsonStr[p].title
+          var url = jsonStr[p].url
+          var img = jsonStr[p].img
+          var sort = jsonStr[p].sort
+          var obj = {
+            title: title,
+            img: img,
+            url: url,
+            sort: sort
+          }
+          arr.push(obj)
+        }
+        _this.demo01_list = arr
       }
     }
   }

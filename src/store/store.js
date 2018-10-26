@@ -37,6 +37,9 @@ export default new Vuex.Store({
   getters: {
     bannerList: state => {
       return state.bannerList
+    },
+    openid: state => {
+      return state.openid
     }
   }
 })

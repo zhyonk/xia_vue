@@ -110,7 +110,6 @@ export default {
             arr.push(obj)
           }
         }
-        console.log(arr)
         return arr
       }
     },
@@ -120,7 +119,7 @@ export default {
         menu = JSON.parse(menu)
         var jsonStr = menu
         var arr = []
-        this.sort(jsonStr)
+        jsonStr = this.sort(jsonStr)
         for (var p in jsonStr) { // 遍历json数组时，这么写p为索引，0,1
           var type = jsonStr[p].type
           if (type === 2) {
@@ -141,7 +140,6 @@ export default {
             arr.push(obj)
           }
         }
-        console.log(arr)
         return arr
       }
     },
@@ -180,6 +178,7 @@ export default {
           }
         }
       }
+      return arr
     }
   }
 }
