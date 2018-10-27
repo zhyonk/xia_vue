@@ -32,6 +32,9 @@ export default new Vuex.Store({
     },
     [types.BANNER]: (state, data) => {
       state.bannerList = data
+    },
+    [types.WORKUSERLIST]: (state, data) => {
+      state.workUserlist = data
     }
   },
   getters: {
@@ -40,6 +43,9 @@ export default new Vuex.Store({
     },
     openid: state => {
       return state.openid
+    },
+    workUserlist: state => {
+      return state.workUserlist
     }
   }
 })

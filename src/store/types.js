@@ -14,3 +14,5 @@ export const OPENID = 'openid'
 export const TOKEN = 'token'
 
 export const BANNER = 'token'
+
+export const WORKUSERLIST = 'workUserlist'
