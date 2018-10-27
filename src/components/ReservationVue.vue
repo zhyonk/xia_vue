@@ -63,7 +63,94 @@
             </div>
             </div>
         </li>
- </div>
+         <li class="am-clickable">
+            <div class="l1">
+                <div class="img am-clickable">
+                    <img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/1824901_s.jpg?t=1498533905429">
+                </div>
+                <div class="name">Gary</div>
+                <div class="level">首席</div>
+                <div class="price_label" style="display: block;">
+                <span class="label">剪发价</span>
+                <span class="price">￥
+                    <strong>78</strong>
+                </span>
+            </div>
+            </div>
+            <div class="l2">
+            <div class="reservation_btn am-clickable">预约</div>
+            <div class="tags">
+            <span class="tag">风格定制分析</span><span class="tag">酷感短发</span><span class="tag">韩式发型</span><span class="tag">各种网红造型摄影</span></div>
+            <div class="numbers">
+            <div class="comment">
+            <div class="n">好评率:
+            <span class="num">100%</span>
+            </div>
+            </div>
+            <div class="rvCount">
+            <div class="n">已被约:
+            <span class="num">205</span>
+            </div>
+            </div>
+            <div class="archiveCount">
+            <div class="n">作品集:
+            <span class="num">3</span>
+            </div>
+            </div>
+            </div>
+            </div>
+        </li>
+    </div>
+
+    <v-scroll :on-refresh="onRefresh" :on-infinite="onInfinite" :dataList="scrollData">
+            <!-- <ul class="listItem">
+                <li v-for="(item) in listdata">
+                    <span>{{ item.date }}</span>
+                    <span>{{ item.portfolio }}</span>
+                    <span :class="{'state0':(item.state===0),'state1':(item.state==1),state2:(item.state===2)}"  >{{ item.drop }}</span>
+                </li>
+            </ul> -->
+        <div class="barberList_ul1" >
+        <li class="am-clickable">
+            <div class="l1">
+                <div class="img am-clickable">
+                    <img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/1824901_s.jpg?t=1498533905429">
+                </div>
+                <div class="name">Gary</div>
+                <div class="level">首席</div>
+                <div class="price_label" style="display: block;">
+                <span class="label">剪发价</span>
+                <span class="price">￥
+                    <strong>78</strong>
+                </span>
+            </div>
+            </div>
+            <div class="l2">
+            <div class="reservation_btn am-clickable">预约</div>
+            <div class="tags">
+            <span class="tag">风格定制分析</span><span class="tag">酷感短发</span><span class="tag">韩式发型</span><span class="tag">各种网红造型摄影</span></div>
+            <div class="numbers">
+            <div class="comment">
+            <div class="n">好评率:
+            <span class="num">100%</span>
+            </div>
+            </div>
+            <div class="rvCount">
+            <div class="n">已被约:
+            <span class="num">205</span>
+            </div>
+            </div>
+            <div class="archiveCount">
+            <div class="n">作品集:
+            <span class="num">3</span>
+            </div>
+            </div>
+            </div>
+            </div>
+        </li>
+    </div>
+    </v-scroll>
+
 </div>
 </template>
 
@@ -85,7 +172,8 @@ export default {
     Tab,
     TabItem,
     ViewBox,
-    Swiper
+    Swiper,
+    'v-scroll': require('./pull-refresh')
   },
   data () {
     return {
@@ -97,7 +185,8 @@ export default {
       shopPhone: '',
       shopHrefTel: '',
       shopImg: '',
-      demo02_index: 1
+      demo02_index: 1,
+      listdata: [] // 下拉更新数据存放数组
     }
   },
   mounted: function () {
@@ -148,6 +237,7 @@ export default {
       })
     }
     this.getBannerBaseList()
+    this.getWorkUserCardList()
   },
   beforeCreate () {
     // 如果没有token的话需要重新登录
@@ -222,6 +312,40 @@ export default {
         }
         _this.demo01_list = arr
       }
+    },
+    getWorkUserCardList () {
+      var openid = store.getters.openid
+    //   var _this = this
+      axios.get('/menu/getUserCardList', {params: {openid: openid}}, {headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }}).then(function (response) {
+        var workUserCardList = response.data.data.workUserCardList
+        store.commit(types.WORKUSERLIST, JSON.stringify(workUserCardList))
+        var jsonStr = workUserCardList
+        var arr = []
+        for (var p in jsonStr) { // 遍历json数组时，这么写p为索引，0,1
+          var userPhone = jsonStr[p].userPhone
+          var userName = jsonStr[p].userName
+          var headImgUrl = jsonStr[p].headImgUrl
+          var praiseAverage = jsonStr[p].praiseAverage
+          var productPrice = jsonStr[p].productPrice
+          var sales = jsonStr[p].sales
+          var record = jsonStr[p].record
+          var obj = {
+            userPhone: userPhone,
+            userName: userName,
+            headImgUrl: headImgUrl,
+            praiseAverage: praiseAverage,
+            productPrice: productPrice,
+            sales: sales,
+            record: record
+          }
+          arr.push(obj)
+        }
+        this.listdata = arr
+      }).catch(function (error) {
+        console.log(error)
+      })
     }
   }
 }
