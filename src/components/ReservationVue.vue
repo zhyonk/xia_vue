@@ -2,9 +2,7 @@
  <div>
 <!-- <swiper :list="demo03_list" auto style="width:100%;margin:0 auto;" height="200px" dots-class="custom-bottom" dots-position="center"> </swiper>-->
 <!-- <swiper :list="demo02_list" style="width:85%;margin:0 auto;" :aspect-ratio="300/800" dots-position="center"></swiper> -->
- <swiper :list="demo01_list" v-model="demo02_index" :min-moving-distance="150" @on-index-change="demo01_onIndexChange"></swiper>
-    
-
+ <swiper :list="demo01_list" v-model="demo02_index" :min-moving-distance="150" @on-index-change="demo01_onIndexChange" style="z-index:1"></swiper>
     <div>
       <sticky
         ref="sticky"
@@ -22,136 +20,56 @@
           </div>
           <div class="barberList_bg"></div>
         </div>
-
       </sticky>
     </div>
-    <div class="barberList_ul1">
-        <li class="am-clickable">
-            <div class="l1">
-                <div class="img am-clickable">
-                    <img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/1824901_s.jpg?t=1498533905429">
+    <div class="barberList_ul1" >
+        <v-scroll :on-refresh="onRefresh" :on-infinite="onInfinite" :dataList="scrollData">
+            <li class="am-clickable" v-for="i in listdata" :key=i.opneId>
+                <div class="l1">
+                    <div class="img am-clickable">
+                        <img style="background-color: rgb(204, 204, 204);" v-bind:src="i.headImgUrl">
+                    </div>
+                    <div class="name">{{ i.userName }}</div>
+                    <div class="level">{{ i.positionName }}</div>
+                    <div class="price_label" style="display: block;">
+                        <span class="label">剪发价</span>
+                        <span class="price">￥
+                            <strong>{{ i.productPrice }}</strong>
+                        </span>
+                    </div>
                 </div>
-                <div class="name">Gary</div>
-                <div class="level">首席</div>
-                <div class="price_label" style="display: block;">
-                <span class="label">剪发价</span>
-                <span class="price">￥
-                    <strong>78</strong>
-                </span>
-            </div>
-            </div>
-            <div class="l2">
-            <div class="reservation_btn am-clickable">预约</div>
-            <div class="tags">
-            <span class="tag">风格定制分析</span><span class="tag">酷感短发</span><span class="tag">韩式发型</span><span class="tag">各种网红造型摄影</span></div>
-            <div class="numbers">
-            <div class="comment">
-            <div class="n">好评率:
-            <span class="num">100%</span>
-            </div>
-            </div>
-            <div class="rvCount">
-            <div class="n">已被约:
-            <span class="num">205</span>
-            </div>
-            </div>
-            <div class="archiveCount">
-            <div class="n">作品集:
-            <span class="num">3</span>
-            </div>
-            </div>
-            </div>
-            </div>
-        </li>
-         <li class="am-clickable">
-            <div class="l1">
-                <div class="img am-clickable">
-                    <img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/1824901_s.jpg?t=1498533905429">
+                <div class="l2">
+                <div class="reservation_btn am-clickable">预约</div>
+                <div class="tags">
+                        <span class="tag"  v-for="tag in i.tagNameList" :key="tag.userTagId">{{tag.tagName}}</span>
                 </div>
-                <div class="name">Gary</div>
-                <div class="level">首席</div>
-                <div class="price_label" style="display: block;">
-                <span class="label">剪发价</span>
-                <span class="price">￥
-                    <strong>78</strong>
-                </span>
-            </div>
-            </div>
-            <div class="l2">
-            <div class="reservation_btn am-clickable">预约</div>
-            <div class="tags">
-            <span class="tag">风格定制分析</span><span class="tag">酷感短发</span><span class="tag">韩式发型</span><span class="tag">各种网红造型摄影</span></div>
-            <div class="numbers">
-            <div class="comment">
-            <div class="n">好评率:
-            <span class="num">100%</span>
-            </div>
-            </div>
-            <div class="rvCount">
-            <div class="n">已被约:
-            <span class="num">205</span>
-            </div>
-            </div>
-            <div class="archiveCount">
-            <div class="n">作品集:
-            <span class="num">3</span>
-            </div>
-            </div>
-            </div>
-            </div>
-        </li>
+                <div class="numbers">
+                <div class="comment">
+                <div class="n">好评率:
+                <span class="num">{{ i.praiseAverage }}%</span>
+                </div>
+                </div>
+                <div class="rvCount">
+                <div class="n">已被约:
+                <span class="num">{{ i.record }}</span>
+                </div>
+                </div>
+                <div class="archiveCount">
+                <div class="n">作品集:
+                <span class="num">{{ i.workRecordCount }}</span>
+                </div>
+                </div>
+                </div>
+                </div>
+            </li>
+            </v-scroll>
+        </div>
+    <br/>
+    <br/>
+    <br/>
     </div>
 
-    <v-scroll :on-refresh="onRefresh" :on-infinite="onInfinite" :dataList="scrollData">
-            <!-- <ul class="listItem">
-                <li v-for="(item) in listdata">
-                    <span>{{ item.date }}</span>
-                    <span>{{ item.portfolio }}</span>
-                    <span :class="{'state0':(item.state===0),'state1':(item.state==1),state2:(item.state===2)}"  >{{ item.drop }}</span>
-                </li>
-            </ul> -->
-        <div class="barberList_ul1" >
-        <li class="am-clickable">
-            <div class="l1">
-                <div class="img am-clickable">
-                    <img style="background-color: rgb(204, 204, 204);" src="http://resourcemyk.meiguanjia.net//artisan/176810/1824901_s.jpg?t=1498533905429">
-                </div>
-                <div class="name">Gary</div>
-                <div class="level">首席</div>
-                <div class="price_label" style="display: block;">
-                <span class="label">剪发价</span>
-                <span class="price">￥
-                    <strong>78</strong>
-                </span>
-            </div>
-            </div>
-            <div class="l2">
-            <div class="reservation_btn am-clickable">预约</div>
-            <div class="tags">
-            <span class="tag">风格定制分析</span><span class="tag">酷感短发</span><span class="tag">韩式发型</span><span class="tag">各种网红造型摄影</span></div>
-            <div class="numbers">
-            <div class="comment">
-            <div class="n">好评率:
-            <span class="num">100%</span>
-            </div>
-            </div>
-            <div class="rvCount">
-            <div class="n">已被约:
-            <span class="num">205</span>
-            </div>
-            </div>
-            <div class="archiveCount">
-            <div class="n">作品集:
-            <span class="num">3</span>
-            </div>
-            </div>
-            </div>
-            </div>
-        </li>
-    </div>
-    </v-scroll>
-
-</div>
+    
 </template>
 
 
@@ -160,6 +78,7 @@ import { ViewBox, Tabbar, TabbarItem, Group, Cell, XHeader, Sticky, Tab, TabItem
 import store from '@/store/store'
 import * as types from '@/store/types'
 import axios from '../axios/https.js'
+import VScroll from './pull-refresh'
 
 export default {
   components: {
@@ -173,7 +92,7 @@ export default {
     TabItem,
     ViewBox,
     Swiper,
-    'v-scroll': require('./pull-refresh')
+    VScroll
   },
   data () {
     return {
@@ -186,7 +105,14 @@ export default {
       shopHrefTel: '',
       shopImg: '',
       demo02_index: 1,
-      listdata: [] // 下拉更新数据存放数组
+      counter: 1, // 当前页
+      num: 3, // 一页显示多少条
+      pageStart: 0, // 开始页数
+      pageEnd: 0, // 结束页数
+      listdata: [], // 下拉更新数据存放数组
+      scrollData: {
+        noFlag: false // 暂无更多数据显示
+      }
     }
   },
   mounted: function () {
@@ -315,13 +241,14 @@ export default {
     },
     getWorkUserCardList () {
       var openid = store.getters.openid
-    //   var _this = this
+      var _this = this
       axios.get('/menu/getUserCardList', {params: {openid: openid}}, {headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }}).then(function (response) {
         var workUserCardList = response.data.data.workUserCardList
         store.commit(types.WORKUSERLIST, JSON.stringify(workUserCardList))
         var jsonStr = workUserCardList
+        console.log(jsonStr)
         var arr = []
         for (var p in jsonStr) { // 遍历json数组时，这么写p为索引，0,1
           var userPhone = jsonStr[p].userPhone
@@ -331,6 +258,9 @@ export default {
           var productPrice = jsonStr[p].productPrice
           var sales = jsonStr[p].sales
           var record = jsonStr[p].record
+          var positionName = jsonStr[p].positionName
+          var workRecordCount = jsonStr[p].workRecordCount
+          var tagNameList = jsonStr[p].tagNameList
           var obj = {
             userPhone: userPhone,
             userName: userName,
@@ -338,14 +268,44 @@ export default {
             praiseAverage: praiseAverage,
             productPrice: productPrice,
             sales: sales,
-            record: record
+            record: record,
+            tagNameList: tagNameList,
+            positionName: positionName,
+            workRecordCount: workRecordCount
           }
           arr.push(obj)
         }
-        this.listdata = arr
+        console.log(arr)
+        _this.listdata = arr
       }).catch(function (error) {
         console.log(error)
       })
+    },
+    onRefresh (done) {
+      this.getWorkUserCardList()
+      done() // call done
+    },
+    onInfinite (done) {
+      this.counter++
+      let end = this.pageEnd = this.num * this.counter
+      let i = this.pageStart = this.pageEnd - this.num
+      let more = this.$el.querySelector('.load-more')
+      for (i; i < end; i++) {
+        if (i >= 30) {
+          more.style.display = 'none' // 隐藏加载条 // 走完数据调用方法
+          this.scrollData.noFlag = true
+          break
+        } else {
+          this.listdata.push({
+            date: '2017-06-1' + i,
+            portfolio: '1.5195' + i,
+            drop: i + '+.00 %',
+            state: 2
+          })
+          more.style.display = 'none' // 隐藏加载条
+        }
+      }
+      done()
     }
   }
 }
