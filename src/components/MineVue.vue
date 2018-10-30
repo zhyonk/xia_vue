@@ -4,8 +4,8 @@
       <p class="center"><img :src="url"></p>
     </blur>
        <grid :show-lr-borders="false">
-      <grid-item :label='i.title' v-for="i in headItem" :key="i.title" @click.native="i.click">
-        <img slot="icon" v-bind:src="i.img">
+      <grid-item :label='head.title' v-for="head in headItem" :key="head.title" @click.native="head.click">
+        <img slot="icon" v-bind:src="head.img">
       </grid-item>
     </grid>
 
@@ -119,7 +119,7 @@ export default {
         menu = JSON.parse(menu)
         var jsonStr = menu
         var arr = []
-        jsonStr = this.sort(jsonStr)
+        this.sort(jsonStr)
         for (var p in jsonStr) { // 遍历json数组时，这么写p为索引，0,1
           var type = jsonStr[p].type
           if (type === 2) {
