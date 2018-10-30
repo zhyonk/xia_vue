@@ -9,12 +9,14 @@ import axios from './axios/https'
 import Vuex from 'vuex'
 import vuexI18n from 'vuex-i18n'
 import global_ from './components/Global'
+import VueScroller from 'vue-scroller'
 Vue.prototype.GLOBAL = global_
 Vue.prototype.$axios = axios
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 FastClick.attach(document.body)
 Vue.config.productionTip = false
 Vue.use(Vuex)
+Vue.use(VueScroller)
 
 const lstore = new Vuex.Store({
   modules: {
