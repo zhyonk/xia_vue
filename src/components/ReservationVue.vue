@@ -23,7 +23,8 @@
       </sticky>
     </div>
     <div class="barberList_ul1" >
-        <v-scroll :on-refresh="onRefresh" :on-infinite="onInfinite" :dataList="scrollData">
+        <scroller style="position: relative;" :on-refresh="refresh" :on-infinite="infinite" :noDataText="noDataText">
+            <div style="height: 1px;"></div>
             <li class="am-clickable" v-for="i in listdata" :key=i.opneId>
                 <div class="l1">
                     <div class="img am-clickable">
@@ -46,24 +47,24 @@
                 <div class="numbers">
                 <div class="comment">
                 <div class="n">好评率:
-                <span class="num">{{ i.praiseAverage }}%</span>
+                    <span class="num">{{ i.praiseAverage }}%</span>
                 </div>
                 </div>
                 <div class="rvCount">
                 <div class="n">已被约:
-                <span class="num">{{ i.record }}</span>
+                    <span class="num">{{ i.record }}</span>
                 </div>
                 </div>
                 <div class="archiveCount">
                 <div class="n">作品集:
-                <span class="num">{{ i.workRecordCount }}</span>
+                    <span class="num">{{ i.workRecordCount }}</span>
                 </div>
                 </div>
                 </div>
                 </div>
             </li>
-            </v-scroll>
-        </div>
+        </scroller>
+    </div>
     <br/>
     <br/>
     <br/>
@@ -78,7 +79,6 @@ import { ViewBox, Tabbar, TabbarItem, Group, Cell, XHeader, Sticky, Tab, TabItem
 import store from '@/store/store'
 import * as types from '@/store/types'
 import axios from '../axios/https.js'
-import VScroll from './pull-refresh'
 
 export default {
   components: {
@@ -91,12 +91,11 @@ export default {
     Tab,
     TabItem,
     ViewBox,
-    Swiper,
-    VScroll
+    Swiper
+    // VScroll
   },
   data () {
     return {
-      // showSpace: false,
       disabled: typeof navigator !== 'undefined' && /iphone/i.test(navigator.userAgent) && /ucbrowser/i.test(navigator.userAgent),
       demo01_list: [],
       shopName: '',
@@ -105,17 +104,13 @@ export default {
       shopHrefTel: '',
       shopImg: '',
       demo02_index: 1,
-      counter: 1, // 当前页
-      num: 3, // 一页显示多少条
-      pageStart: 0, // 开始页数
-      pageEnd: 0, // 结束页数
+      offset: 0,
       listdata: [], // 下拉更新数据存放数组
-      scrollData: {
-        noFlag: false // 暂无更多数据显示
-      }
+      noDataText: '我们也是有底线的'
     }
   },
   mounted: function () {
+      // 设置
     var shopInfo = sessionStorage.getItem('shopInfo')
     shopInfo = JSON.parse(shopInfo)
     if (shopInfo) {
@@ -163,7 +158,7 @@ export default {
       })
     }
     this.getBannerBaseList()
-    this.getWorkUserCardList()
+    this.getUserCard()
   },
   beforeCreate () {
     // 如果没有token的话需要重新登录
@@ -239,16 +234,16 @@ export default {
         _this.demo01_list = arr
       }
     },
-    getWorkUserCardList () {
+    getWorkUserCardList (offset, fn) {
       var openid = store.getters.openid
       var _this = this
-      axios.get('/menu/getUserCardList', {params: {openid: openid}}, {headers: {
+      axios.get('/menu/getUserCardList', {params: {openid: openid, offset: offset, limit: 10}}, {headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }}).then(function (response) {
         var workUserCardList = response.data.data.workUserCardList
         store.commit(types.WORKUSERLIST, JSON.stringify(workUserCardList))
         var jsonStr = workUserCardList
-        console.log(jsonStr)
+        console.log('jsonStr: ' + jsonStr)
         var arr = []
         for (var p in jsonStr) { // 遍历json数组时，这么写p为索引，0,1
           var userPhone = jsonStr[p].userPhone
@@ -276,36 +271,75 @@ export default {
           arr.push(obj)
         }
         console.log(arr)
+        if (arr.length < 10) {
+          _this.offset = 0
+          fn(true)
+          _this.listdata = arr
+          return
+        } else {
+          if (fn) {
+            fn()
+          }
+        }
+        if (offset === 1) {
+          _this.listdata = arr
+        } else {
+          _this.listdata = _this.listdata.concat(arr)
+        }
+        console.log('arr: ' + _this.listdata)
+        // this.listdata = arr
+      }).catch(function (error) {
+        console.log(error)
+      })
+    },
+    getUserCard () {
+      var openid = store.getters.openid
+      var _this = this
+      axios.get('/menu/getUserCardList', {params: {openid: openid, offset: 1, limit: 10}}, {headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }}).then(function (response) {
+        var workUserCardList = response.data.data.workUserCardList
+        store.commit(types.WORKUSERLIST, JSON.stringify(workUserCardList))
+        var jsonStr = workUserCardList
+        console.log('jsonStr: ' + jsonStr)
+        var arr = []
+        for (var p in jsonStr) { // 遍历json数组时，这么写p为索引，0,1
+          var userPhone = jsonStr[p].userPhone
+          var userName = jsonStr[p].userName
+          var headImgUrl = jsonStr[p].headImgUrl
+          var praiseAverage = jsonStr[p].praiseAverage
+          var productPrice = jsonStr[p].productPrice
+          var sales = jsonStr[p].sales
+          var record = jsonStr[p].record
+          var positionName = jsonStr[p].positionName
+          var workRecordCount = jsonStr[p].workRecordCount
+          var tagNameList = jsonStr[p].tagNameList
+          var obj = {
+            userPhone: userPhone,
+            userName: userName,
+            headImgUrl: headImgUrl,
+            praiseAverage: praiseAverage,
+            productPrice: productPrice,
+            sales: sales,
+            record: record,
+            tagNameList: tagNameList,
+            positionName: positionName,
+            workRecordCount: workRecordCount
+          }
+          arr.push(obj)
+        }
         _this.listdata = arr
       }).catch(function (error) {
         console.log(error)
       })
     },
-    onRefresh (done) {
-      this.getWorkUserCardList()
-      done() // call done
+    refresh (done) {
+      this.offset = 0
+      this.getWorkUserCardList(1, done)
     },
-    onInfinite (done) {
-      this.counter++
-      let end = this.pageEnd = this.num * this.counter
-      let i = this.pageStart = this.pageEnd - this.num
-      let more = this.$el.querySelector('.load-more')
-      for (i; i < end; i++) {
-        if (i >= 30) {
-          more.style.display = 'none' // 隐藏加载条 // 走完数据调用方法
-          this.scrollData.noFlag = true
-          break
-        } else {
-          this.listdata.push({
-            date: '2017-06-1' + i,
-            portfolio: '1.5195' + i,
-            drop: i + '+.00 %',
-            state: 2
-          })
-          more.style.display = 'none' // 隐藏加载条
-        }
-      }
-      done()
+    infinite (done) {
+      this.offset++
+      this.getWorkUserCardList(this.offset, done)
     }
   }
 }
