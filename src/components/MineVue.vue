@@ -4,13 +4,13 @@
       <p class="center"><img :src="url"></p>
     </blur>
        <grid :show-lr-borders="false">
-      <grid-item :label='head.title' v-for="head in headItem" :key="head.title" @click.native="head.click">
+      <grid-item :label='head.title' v-for="head in headItem" :key="head.title" v-bind:link="head.click">
         <img slot="icon" v-bind:src="head.img">
       </grid-item>
     </grid>
 
     <group>
-      <cell :title="i.title" v-for="i in itemList" :key="i.title" @click.native="i.click" is-link>
+      <cell :title="i.title" v-for="i in itemList" :key="i.title" v-bind:link="i.click" is-link>
         <img slot="icon" width="20" style="display:block;margin-right:5px;" v-bind:src="i.img">
       </cell>
     </group>
@@ -57,8 +57,8 @@ export default {
   },
   mounted: function () {
     this.url = this.getHeadUrl()
-    this.headItem = this.getHeadItem()
-    this.itemList = this.getBottomItem()
+    this.getHeadItem()
+    this.getBottomItem()
   },
   methods: {
     onItemClick () {
@@ -100,9 +100,10 @@ export default {
             var obj = {
               title: name,
               img: icon,
-              click: function () {
-                router.push(url)
-              },
+              click: url,
+              // function () {
+              //   router.push(url)
+              // },
               sort: sort,
               icon: icon,
               type: type
@@ -110,7 +111,7 @@ export default {
             arr.push(obj)
           }
         }
-        return arr
+        this.headItem = arr
       }
     },
     getBottomItem () {
@@ -140,7 +141,7 @@ export default {
             arr.push(obj)
           }
         }
-        return arr
+        this.itemList = arr
       }
     },
     getMineMenu () {
