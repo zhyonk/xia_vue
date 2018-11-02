@@ -428,6 +428,7 @@ export default {
 .barberList_ul1 li {
     padding: 10px 15px;
     position: relative;
+    list-style:none;
 }
 .barberList_ul1 {
     padding: 12px 0;
@@ -442,6 +443,7 @@ export default {
     height: 58px;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
+    list-style:none;
 }
 .barberList_ul1 .img {
     width: 73px;

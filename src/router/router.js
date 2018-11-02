@@ -43,11 +43,8 @@ const routes = [
     name: 'follow',
     component: Follow
   }, {
-    path: '/membercard',
-    name: 'membercard',
-    meta: {
-      requireAuth: true
-    },
+    path: '/mcard',
+    name: 'mcard',
     component: MemberCard
   }
 ]
