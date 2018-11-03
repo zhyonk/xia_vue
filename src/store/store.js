@@ -12,7 +12,8 @@ export default new Vuex.Store({
     token: null,
     title: '',
     openid: '',
-    bannerList: null
+    bannerList: null,
+    memberCardInfo: null
   },
   mutations: {
     [types.LOGIN]: (state, data) => {
@@ -35,6 +36,9 @@ export default new Vuex.Store({
     },
     [types.WORKUSERLIST]: (state, data) => {
       state.workUserlist = data
+    },
+    [types.MEMBERCARDINFO]: (state, data) => {
+      state.memberCardInfo = data
     }
   },
   getters: {
@@ -46,6 +50,9 @@ export default new Vuex.Store({
     },
     workUserlist: state => {
       return state.workUserlist
+    },
+    memberCardInfo: state => {
+      return state.memberCardInfo
     }
   }
 })
