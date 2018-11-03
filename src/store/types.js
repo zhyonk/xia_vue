@@ -16,3 +16,5 @@ export const TOKEN = 'token'
 export const BANNER = 'token'
 
 export const WORKUSERLIST = 'workUserlist'
+
+export const MEMBERCARDINFO = 'memberCardInfo'
