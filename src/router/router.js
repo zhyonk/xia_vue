@@ -8,6 +8,10 @@ import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Follow from '@/components/Follow'
 import MemberCard from '@/components/MemberCard'
+import MemberCardList from '@/components/MemberCardList'
+import MemberCardDetail from '@/components/MemberCardDetail'
+
+import Coupon from '@/components/Coupon'
 
 import store from '@/store/store'
 import * as types from '@/store/types'
@@ -46,6 +50,18 @@ const routes = [
     path: '/mcard',
     name: 'mcard',
     component: MemberCard
+  }, {
+    path: '/mcardList',
+    name: 'mcardList',
+    component: MemberCardList
+  }, {
+    path: '/coupon',
+    name: 'coupon',
+    component: Coupon
+  }, {
+    path: '/mcardDetail/:cardNumber',
+    name: 'mcardDetail',
+    component: MemberCardDetail
   }
 ]
 // 页面刷新时，重新赋值token
@@ -58,25 +74,43 @@ const router = new Router({
   routes
 })
 
+store.registerModule('vux', { // 名字自己定义
+  state: {
+    isLoading: false
+  },
+  mutations: {
+    updateLoadingStatus (state, payload) {
+      state.isLoading = payload.isLoading
+    }
+  }
+})
+
 router.beforeEach((to, from, next) => {
   if (to.matched.some(r => r.meta.requireAuth)) {
+    next()
     console.log('这个请求需要验证')
     console.log(store)
     if (store.state.token) {
       console.log('store中的token不为空,已经登陆token为： ')
       console.log(store.state.token)
+      store.commit('updateLoadingStatus', { isLoading: true })
       next()
     } else {
       console.log('store中的token为空跳转到登陆界面')
+      store.commit('updateLoadingStatus', { isLoading: true })
       next({
         path: '/login',
         query: {redirect: to.fullPath}
       })
     }
   } else {
+    store.commit('updateLoadingStatus', { isLoading: true })
     console.log('这个请求不需要验证')
     next()
   }
+})
+router.afterEach(function (to) {
+  store.commit('updateLoadingStatus', { isLoading: false })
 })
 
 export default router

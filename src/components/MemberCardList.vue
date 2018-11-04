@@ -1,55 +1,36 @@
 <template>
 <div>
-  <x-header>我的会员卡</x-header>
-  <div v-show="isShow">
-    <div class="am-page-empty class-fullcenter am-clickable" style="display: block;">
-      <div>
-      <!-- <img class="background" src="../assets/images/card_space.png"> -->
-      <p>您目前没有任何
-      <em v-show="isShow" class="v4_myCard">会员卡</em>，轻触屏幕可查看
-      <em v-show="isShow" class="v4_myCard">会员卡</em>类型</p>
-      </div>
-    </div>
-  </div>
+  <x-header>会员卡列表</x-header>
   <div class="cardList">
-  <group>
-    <cell title="卡包" is-link :value="cardCount" link="/mcardList">
-        <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../assets/images/card.png">
-    </cell>
-    
-  <van-loading v-show="loadCardList" style="margin:auto"/>
-    <div class ="card" v-for="item in cardListInfo" :key="item.memberCardNumber" @click="item.detail" :style="{ 'background-color': item.memberCardTypeColor }">
-      <div class="content"  >
+   <van-loading v-show="loadCardList" style="margin:auto"/>
+    <li class ="card" v-for="item in cardListInfo" :key="item.memberCardNumber" @click="item.detail" :style="{ 'background-color': item.memberCardTypeColor }">
+      <div class="content">
       <div class="center">
         <h1 class="cardTypeName">{{item.memberCardTypeName}}</h1>
         <img class="headImage" src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqNeOZ9Nibv3jTRXZsvtlsILiazVXhGLicLa6emMCgx9X2DY0rjqQmicOGD3ly0p1LIedyfoXGYcPPSqA/132">
         <h1 class="discount">{{item.discounts}}折</h1>
         <h1 class="remainder">余额 ：{{item.remainderPrice}}</h1>
-        <h1 class="deadline">过期时间：{{item.deadline}}</h1>
+        <h1 class="deadline">过期时间：2018-10-30</h1>
       </div>
       </div>
-    </div>
-    <br/>
-  </group>
-
-  <group>
-    <cell title="优惠卷" is-link  style="height:50px" link="/coupon">
-        <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../assets/images/coupon.png">
-    </cell>
-  </group>
+    </li>
     
   </div>
 </div>
+
 </template>
 
 <script>
+// import net from '../utils/net'
 import axios from '../axios/https.js'
 import { XHeader, CellBox, Cell, Group } from 'vux'
+// import auth from '../aouth/auth'
 import store from '@/store/store'
 import * as types from '@/store/types'
+// import { Button, Cell } from 'vant'
+import utils from '../utils/utils.js'
 import { Loading } from 'vant'
 import Vue from 'vue'
-import utils from '../utils/utils.js'
 import router from '../router/router.js'
 Vue.use(Loading)
 
@@ -63,19 +44,28 @@ export default {
   data () {
     return {
       error: '',
-      isShow: false,
+      isShow: true,
       loadCardList: true,
-      cardListInfo: [],
-      cardCount: '查看全部(0)'
+      cardListInfo: []
     }
   },
   mounted: function () {
+    // 设置
     // 设置
     var info = this.getMemberCard()
     this.cardListInfo = info
     if (info != null && info !== '') {
       this.loadCardList = false
       this.cardCount = '查看全部(' + info.length + ')'
+    }
+    var memberCardInfo = info
+    console.log('Info1: ' + memberCardInfo)
+    if (memberCardInfo == null) {
+      console.log('memberCardInfo: not show')
+      this.isShow = false
+    } else {
+      console.log('memberCardInfo: show')
+      this.isShow = true
     }
   },
   methods: {
@@ -95,13 +85,12 @@ export default {
             }
           }
           _this.cardListInfo = memberCardInfo
-
           if (memberCardInfo != null && memberCardInfo !== '') {
             _this.loadCardList = false
             _this.cardCount = '查看全部(' + memberCardInfo.length + ')'
           }
           console.log('Info1: ' + memberCardInfo)
-          if (memberCardInfo) {
+          if (memberCardInfo == null) {
             console.log('memberCardInfo: not show')
             _this.isShow = false
           } else {

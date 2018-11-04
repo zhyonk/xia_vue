@@ -20,6 +20,7 @@
         <span slot="label">我的</span>
       </tabbar-item> 
     </tabbar>
+    <loading v-model="isLoading"></loading>
   </div>
 </template>
 
@@ -33,8 +34,10 @@ import {
   XHeader,
   Sticky,
   Tab,
-  TabItem
+  TabItem,
+  Loading
 } from 'vux'
+import { mapState } from 'vuex'
 
 export default {
   name: 'app',
@@ -47,7 +50,8 @@ export default {
     Sticky,
     Tab,
     TabItem,
-    ViewBox
+    ViewBox,
+    Loading
   },
   mounted: function () {
     var openId = sessionStorage.getItem('openid')
@@ -61,6 +65,11 @@ export default {
     return {
       reservationLink: '/reservation'
     }
+  },
+  computed: {
+    ...mapState({
+      isLoading: state => state.vux.isLoading
+    })
   }
 }
 </script>
