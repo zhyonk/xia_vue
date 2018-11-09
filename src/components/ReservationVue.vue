@@ -1,85 +1,251 @@
 <template>
- <div>
-<!-- <swiper :list="demo03_list" auto style="width:100%;margin:0 auto;" height="200px" dots-class="custom-bottom" dots-position="center"> </swiper>-->
-<!-- <swiper :list="demo02_list" style="width:85%;margin:0 auto;" :aspect-ratio="300/800" dots-position="center"></swiper> -->
- <swiper :list="demo01_list" v-model="demo02_index" :min-moving-distance="150" @on-index-change="demo01_onIndexChange" style="z-index:1"></swiper>
     <div>
-      <sticky
-        ref="sticky"
-        :check-sticky-support="false"
-        :disabled="disabled">
-        <div class="barberList_storeInfo">
-          <div class="container">
-          <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" :src="shopImg"></div>
-          <a class="call" :href="shopHrefTel"></a>
-          <div class="content">
-            <div class="name">{{ shopName }}</div>
-            <div class="adress">{{ shopAddress }}</div>
-            <div class="tel">{{shopPhone}}</div>
-          </div>
-          </div>
-          <div class="barberList_bg"></div>
+        <!-- <swiper :list="demo03_list" auto style="width:100%;margin:0 auto;" height="200px" dots-class="custom-bottom" dots-position="center"> </swiper>-->
+        <!-- <swiper :list="demo02_list" style="width:85%;margin:0 auto;" :aspect-ratio="300/800" dots-position="center"></swiper> -->
+        <swiper :list="demo01_list" v-model="demo02_index" :min-moving-distance="150" @on-index-change="demo01_onIndexChange" style="z-index:1"></swiper>
+        <div>
+            <sticky ref="sticky" :check-sticky-support="false" :disabled="disabled">
+                <div class="barberList_storeInfo">
+                    <div class="container">
+                        <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" :src="shopImg"></div>
+                        <a class="call" :href="shopHrefTel"></a>
+                        <div class="content">
+                            <div class="name">{{ shopName }}</div>
+                            <div class="adress">{{ shopAddress }}</div>
+                            <div class="tel">{{shopPhone}}</div>
+                        </div>
+                    </div>
+                    <div class="barberList_bg"></div>
+                </div>
+            </sticky>
         </div>
-      </sticky>
-    </div>
-    <div class="barberList_ul1" >
-        <scroller style="position: relative;" :on-refresh="refresh" :on-infinite="infinite" :noDataText="noDataText">
-            <div style="height: 1px;"></div>
-            <li class="am-clickable" v-for="i in listdata" :key=i.opneId>
-                <div class="l1">
-                    <div class="img am-clickable">
-                        <img style="background-color: rgb(204, 204, 204);" v-bind:src="i.headImgUrl">
+        <div id="taobao-best" style="width: 100%">
+            <!-- Swiper -->
+            <div class="swiper-container show-swiper swiper-container-horizontal swiper-container-ios shejishi-container " style="z-index: 3">
+                <div class="swiper-wrapper shejishi-wrapper" style="transition-duration: 0ms; transform: translate3d(37px, 0px, 0px);">
+                    <div class="swiper-slide swiper-slide-active shejishi-slide" style="margin-right: 17px;">
+                        <div class="goods" style="transform: scale3d(1.1, 1.1, 1); transition-duration: 0ms;width: 158px;height:230px">
+                            <a link="/reserveDetail">
+                                <div class="c-top">
+                                    <div class="img">
+                                        <img src="../assets/uploads/001.jpg" width="100%">
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <!-- <h2>夏惠敏老师</h2>  -->
+                                    <!--<p>一把可以切水果</p>-->
+                                    <ul>
+                                        <li>蔻丹</li>
+                                        <li> </li>
+                                    </ul>
+                                    <div class="btn">立即预约</div>
+                                </div>
+                            </a>
+
+                        </div>
                     </div>
-                    <div class="name">{{ i.userName }}</div>
-                    <div class="level">{{ i.positionName }}</div>
-                    <div class="price_label" style="display: block;">
-                        <span class="label">剪发价</span>
-                        <span class="price">￥
-                            <strong>{{ i.productPrice }}</strong>
-                        </span>
+                    <div class="swiper-slide swiper-slide-next shejishi-slide" style="margin-right: 17px;">
+                        <div class="goods" style="transform: scale3d(1, 1, 1); transition-duration: 0ms;width: 158px;height:230px">
+                            <a href="#springUrl('/game/report/oWHgww6RA28kbYUwlwvhs64sw_9s')">
+                                <div class="c-top">
+                                    <!--<div class="date">-->
+                                    <!--<div class="year">2017.12</div>-->
+                                    <!--<div class="day">15</div>-->
+                                    <!--<div class="oldyear">丁酉年</div>-->
+                                    <!--<div class="oldday">十月廿八</div>-->
+                                    <!--</div>-->
+                                    <div class="img">
+                                        <img src="../assets/uploads/002.jpg" width="100%">
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <!--<p>一把可以切水果</p>-->
+                                    <ul>
+                                        <li>彩绘美甲</li>
+                                        <li> </li>
+                                    </ul>
+                                    <div class="btn">立即预约</div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="swiper-slide shejishi-slide" style="margin-right: 17px;">
+                        <div class="goods" style="transform: scale3d(1, 1, 1); transition-duration: 0ms;width: 158px;height:230px">
+                            <a href="#">
+                                <div class="c-top">
+                                    <!--<div class="date">-->
+                                    <!--<div class="year">2017.12</div>-->
+                                    <!--<div class="day">15</div>-->
+                                    <!--<div class="oldyear">丁酉年</div>-->
+                                    <!--<div class="oldday">十月廿八</div>-->
+                                    <!--</div>-->
+                                    <div class="img">
+                                        <img src="../assets/uploads/001.jpg" width="100%">
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <!-- <h2>夏惠敏老师</h2> -->
+                                    <!--<p>一把可以切水果</p>-->
+                                    <ul>
+                                        <li>贴片美甲</li>
+                                        <li> </li>
+                                    </ul>
+                                    <div class="btn">立即预约</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide shejishi-slide" style="margin-right: 17px;">
+                        <div class="goods" style="transform: scale3d(1, 1, 1); transition-duration: 0ms;width: 158px;height:230px">
+                            <a href="#">
+                                <div class="c-top">
+                                    <!--<div class="date">-->
+                                    <!--<div class="year">2017.12</div>-->
+                                    <!--<div class="day">15</div>-->
+                                    <!--<div class="oldyear">丁酉年</div>-->
+                                    <!--<div class="oldday">十月廿八</div>-->
+                                    <!--</div>-->
+                                    <div class="img">
+                                        <img src="../assets/uploads/002.jpg" width="100%">
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <!-- <h2>雕花美甲</h2> -->
+                                    <!--<p>一把可以切水果</p>-->
+                                    <ul>
+                                        <li>雕花美甲</li>
+                                        <li> </li>
+                                    </ul>
+                                    <div class="btn">立即预约</div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="swiper-slide shejishi-slide" style="margin-right: 17px;">
+                        <div class="goods" style="transform: scale3d(1, 1, 1); transition-duration: 0ms;width: 158px;height:230px">
+                            <a href="#">
+                                <div class="c-top">
+                                    <!--<div class="date">-->
+                                    <!--<div class="year">2017.12</div>-->
+                                    <!--<div class="day">15</div>-->
+                                    <!--<div class="oldyear">丁酉年</div>-->
+                                    <!--<div class="oldday">十月廿八</div>-->
+                                    <!--</div>-->
+                                    <div class="img">
+                                        <img src="../assets/uploads/001.jpg" width="100%">
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <!-- <h2>夏惠敏老师</h2> -->
+                                    <!--<p>一把可以切水果</p>-->
+                                    <ul>
+                                        <li>光疗甲</li>
+                                        <li> </li>
+                                    </ul>
+                                    <div class="btn">立即预约</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide last-slide shejishi-slide" style="margin-right: 17px;">
+                        <span class="icon"></span>
+                        <p class="text">左滑查看更多</p>
                     </div>
                 </div>
-                <div class="l2">
-                <div class="reservation_btn am-clickable">预约</div>
-                <div class="tags">
-                        <span class="tag"  v-for="tag in i.tagNameList" :key="tag.userTagId">{{tag.tagName}}</span>
+            </div>
+            <div class="mask" style="z-index: 2"></div>
+            <div class=" shejishi-container swiper-container bg-swiper swiper-container-fade swiper-container-horizontal swiper-container-ios" style="position: absolute;z-index: 1">
+                <div class="swiper-wrapper" style="transition-duration: 0ms;">
+                    <div class="swiper-slide swiper-slide-active shejishi-slide" style="width: 320px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur001.jpg"></div>
+                    <div class="swiper-slide swiper-slide-next shejishi-slide" style="width: 320px; opacity: 0; transform: translate3d(-320px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur002.jpg"></div>
+                    <div class="swiper-slide shejishi-slide" style="width: 320px; opacity: 0; transform: translate3d(-640px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur003.jpg"></div>
+                    <div class="swiper-slide shejishi-slide" style="width: 320px; opacity: 0; transform: translate3d(-1280px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur004.jpg"></div>
+                    <div class="swiper-slide shejishi-slide" style="width: 320px; opacity: 0; transform: translate3d(-1920px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur005.jpg"></div>
+
                 </div>
-                <div class="numbers">
-                <div class="comment">
-                <div class="n">好评率:
-                    <span class="num">{{ i.praiseAverage }}%</span>
+            </div>
+        </div>
+        <!-- <yd-list theme="5"> 
+        <yd-list-item v-for="item in list" :key="item.key">
+            <img slot="img" :src="item.img">
+            <span slot="title">{{item.title}}</span>
+            <yd-list-other slot="other">
+                <div>
+                    <span class="demo-list-price"><em>¥</em>{{item.price}}</span>
+                    <span class="demo-list-del-price">¥{{item.w_price}}</span>
                 </div>
-                </div>
-                <div class="rvCount">
-                <div class="n">已被约:
-                    <span class="num">{{ i.record }}</span>
-                </div>
-                </div>
-                <div class="archiveCount">
-                <div class="n">作品集:
-                    <span class="num">{{ i.workRecordCount }}</span>
-                </div>
-                </div>
-                </div>
-                </div>
-            </li>
-        </scroller>
-    </div>
-    <br/>
-    <br/>
-    <br/>
+                <div>content</div>
+            </yd-list-other>
+        </yd-list-item>
+    </yd-list> -->
+        <div class="barberList_ul1">
+            <scroller style="position: relative;" :on-refresh="refresh" :on-infinite="infinite" :noDataText="noDataText">
+                <div style="height: 1px;"></div>
+                <li class="am-clickable" v-for="i in listdata" :key=i.opneId>
+                    <div class="l1">
+                        <div class="img am-clickable">
+                            <img style="background-color: rgb(204, 204, 204);" v-bind:src="i.headImgUrl">
+                        </div>
+                        <div class="name">{{ i.userName }}</div>
+                        <div class="level">{{ i.positionName }}</div>
+                        <div class="price_label" style="display: block;">
+                            <span class="label">剪发价</span>
+                            <span class="price">￥
+                                <strong>{{ i.productPrice }}</strong>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="l2">
+                        <div class="reservation_btn am-clickable">预约</div>
+                        <div class="tags">
+                            <span class="tag" v-for="tag in i.tagNameList" :key="tag.userTagId">{{tag.tagName}}</span>
+                        </div>
+                        <div class="numbers">
+                            <div class="comment">
+                                <div class="n">好评率:
+                                    <span class="num">{{ i.praiseAverage }}%</span>
+                                </div>
+                            </div>
+                            <div class="rvCount">
+                                <div class="n">已被约:
+                                    <span class="num">{{ i.record }}</span>
+                                </div>
+                            </div>
+                            <div class="archiveCount">
+                                <div class="n">作品集:
+                                    <span class="num">{{ i.workRecordCount }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </scroller>
+        </div>
+        <br />
+        <br />
+        <br />
     </div>
 
-    
 </template>
-
-
+<style lang="less">
+@import url('./less/style1.less');
+@import url('./less/swiper.min.less');
+</style>
 <script>
 import { ViewBox, Tabbar, TabbarItem, Group, Cell, XHeader, Sticky, Tab, TabItem, Swiper } from 'vux'
 import store from '@/store/store'
 import * as types from '@/store/types'
 import axios from '../axios/https.js'
-
+import Vue from 'vue'
+import Swiperjs from 'swiper'
+// import {ListTheme, ListItem, ListOther} from 'vue-ydui/dist/lib.rem/list'
+// import 'vue-ydui/dist/ydui.base.css'
+import {ListTheme, ListItem, ListOther} from 'vue-ydui/dist/lib.px/list'
+Vue.component(ListTheme.name, ListTheme)
+Vue.component(ListItem.name, ListItem)
+Vue.component(ListOther.name, ListOther)
 export default {
   components: {
     Tabbar,
@@ -91,7 +257,11 @@ export default {
     Tab,
     TabItem,
     ViewBox,
-    Swiper
+    Swiper,
+    ListOther,
+    ListItem,
+    ListTheme,
+    Swiperjs
     // VScroll
   },
   data () {
@@ -106,7 +276,15 @@ export default {
       demo02_index: 1,
       offset: 0,
       listdata: [], // 下拉更新数据存放数组
-      noDataText: '我们也是有底线的'
+      noDataText: '我们也是有底线的',
+      list: [
+              {img: '//img1.shikee.com/try/2016/06/23/14381920926024616259.jpg', title: '标题111标题标题标题标题', price: 156.23, w_price: 89.36},
+              {img: '//img1.shikee.com/try/2016/06/21/10172020923917672923.jpg', title: '标题222标题标题标题标题', price: 256.23, w_price: 89.36},
+              {img: '//img1.shikee.com/try/2016/06/23/15395220917905380014.jpg', title: '标题333标题标题标题标题', price: 356.23, w_price: 89.36},
+              {img: '//img1.shikee.com/try/2016/06/25/14244120933639105658.jpg', title: '标题444标题标题标题标题', price: 456.23, w_price: 89.36},
+              {img: '//img1.shikee.com/try/2016/06/26/12365720933909085511.jpg', title: '标题555标题标题标题标题', price: 556.23, w_price: 89.36},
+              {img: '//img1.shikee.com/try/2016/06/19/09430120929215230041.jpg', title: '标题666标题标题标题标题', price: 656.23, w_price: 89.36}
+      ]
     }
   },
   mounted: function () {
@@ -159,6 +337,43 @@ export default {
     }
     this.getBannerBaseList()
     this.getUserCard()
+
+    var swiperBg = new Swiperjs('.show-swiper', {
+      slidesPerView: 'auto',
+      watchSlidesProgress: !0,
+      slidesOffsetBefore: 37,
+      spaceBetween: 10,
+        // width:180,
+      resistanceRatio: 1,
+      controller: {
+        control: new Swiperjs('.bg-swiper', {
+          effect: 'fade',
+          fadeEffect: {
+            crossFade: !1
+          }
+        })
+      },
+      on: {
+        progress: function (b) {
+          for (var i = 0; i < this.slides.length; i++) {
+            var slide = this.slides.eq(i)
+            var slideProgress = this.slides[i].progress
+            var prevIndent = i === 4 ? 0.3228 : 0.0898
+            var scale = Math.abs(slideProgress + prevIndent) < 1 ? 0.1 * (1 - Math.abs(slideProgress + prevIndent)) + 1 : 1
+            slide.find('.goods').transform('scale3d(' + scale + ',' + scale + ',1)')
+          }
+        },
+        setTransition: function (b) {
+          for (var a = 0; a < this.slides.length; a++) this.slides.eq(a).find('.goods').transition(b)
+        },
+        touchMove: function () {
+          this.controller.control = this.progress < 0.01 ? '' : swiperBg
+        },
+        touchEnd: function () {
+          this.translate < -1515 && alert('\u8df3\u8f6c')
+        }
+      }
+    })
   },
   beforeCreate () {
     // 如果没有token的话需要重新登录
@@ -594,4 +809,35 @@ export default {
     background-color: #eee;
     margin: 0 8px 5px 0;
 }
+.yd-list-theme1 .yd-list-item .yd-list-title {
+    word-wrap: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: justify;
+    height: 18px;
+}
+.yd-list-title {
+    color: #505050;
+    font-size: 13px;
+    text-align: justify;
+    font-weight: 800;
+}
+.yd-list-other {
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    color: #999;
+}
+
 </style>
