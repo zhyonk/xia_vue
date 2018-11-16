@@ -7,8 +7,6 @@
            style="top: 0px; bottom: 41px;">
         <div class="am-body-inner"
              style="transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);">
-          <div class="am-drag top down"
-               style="display:none"><span class="icon">T</span><span class="am-drag-text">下拉刷新列表</span></div>
           <div class="barberDetail_base"
                style="height: 337px;">
             <div class="blurwrap">
@@ -105,28 +103,10 @@
           <div class="am-support"></div>
         </div>
       </div>
-      <div class="am-page-loading class-fullcenter">
-        <div>
-          <span></span>
-          <p>正在努力加载</p>
-        </div>
-      </div>
-      <div class="am-page-error class-fullcenter">
-        <div>
-          <p>数据请求失败,请重试</p>
-          <span class="button-common am-clickable">重试</span>
-        </div>
-      </div>
-      <div class="am-page-empty class-fullcenter">
-        <div>
-          <span></span>
-          <p>空空如也</p>
-        </div>
-      </div>
-      <div class="am-placeholder reservationBtnGroup">
+      <!-- <div class="am-placeholder reservationBtnGroup">
         <div class="rewardBtn am-clickable">打赏TA</div>
         <div class="reservation am-clickable">预约</div>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -155,9 +135,11 @@ export default {
   },
   data () {
     return {
+      isHide:true
     }
   },
   mounted: function () {
+    console.log("tabbar: " + this.$refs.tabbar)
   },
   methods: {
   }

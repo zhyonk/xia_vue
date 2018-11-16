@@ -11,14 +11,14 @@
 	left: 0;
 	bottom: 0;
 	right: 0;
-	overflow: hidden;
+	// overflow: hidden;
 	display: none;
 	-webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 5000, 0, 0, 1);
 	transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 5000, 0, 0, 1);
 }
 .am-body-wrap {
 	width: 100%;
-	overflow: hidden;
+	// overflow: hidden;
 	position: absolute;
 	top: 44px;
 	bottom: 0;
@@ -319,7 +319,7 @@ textarea {
 	position: relative;
 	height: 20px;
 	line-height: 20px;
-	overflow: hidden;
+	// overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	font-size: 14px;
@@ -548,4 +548,55 @@ a {
 
 .page_barberDetail .reservationBtnGroup div {
 	-webkit-box-flex: 1;
+}
+body {
+	font-family: Helvetica, "微软雅黑", "华文细黑", "黑体";
+	font-size: 14px;
+	background: #fff;
+	color: #555;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+.theme1 {
+	color: #222;
+}
+.page_barberDetail {
+	background: #fff;
+}
+.page_barberDetail .addresstel {
+	position: relative;
+	height: 60px;
+	padding: 10px 0;
+	background-color: #f5f5f5;
+}
+.page_barberDetail .addresstel .addresstelinner {
+	height: 60px;
+	padding: 0 10px;
+	background: #fff;
+}
+.page_barberDetail .addresstel .addresstelinner .bottom {
+	width: 210px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+	color: #999;
+	padding-left: 19px;
+	background: url(../../assets/uploads/barberaddress.png) no-repeat 3px 8px;
+	background-size: 10px 12px;
+	// overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.page_barberDetail .addresstel .addresstelinner .telbtn {
+	position: absolute;
+	right: 10px;
+	top: 20px;
+	display: block;
+	width: 40px;
+	height: 40px;
+	background: url(../../assets/uploads/barbertel.png) no-repeat center center;
+	border-radius: 50%;
+	background-size: cover;
 }
