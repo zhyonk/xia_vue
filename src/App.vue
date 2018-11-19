@@ -1,24 +1,30 @@
 <template>
 
   <div id="app">
-     <router-view></router-view>
-    <tabbar id='bottomTab'>
-      <tabbar-item selected v-bind:link="reservationLink">
-             <img slot="icon" src="./assets/demo/icon_nav_button.png">
-            <span slot="label">预约</span>
+    <router-view></router-view>
+    <tabbar id='bottomTab'
+            ref="tabbar">
+      <tabbar-item selected
+                   v-bind:link="reservationLink">
+        <img slot="icon"
+             src="./assets/demo/icon_nav_button.png">
+        <span slot="label">预约</span>
       </tabbar-item>
       <tabbar-item link="/works">
-        <img slot="icon" src="./assets/demo/icon_nav_msg.png">
+        <img slot="icon"
+             src="./assets/demo/icon_nav_msg.png">
         <span slot="label">作品</span>
       </tabbar-item>
-      <tabbar-item  link="/shop">
-        <img slot="icon" src="./assets/demo/icon_nav_article.png">
+      <tabbar-item link="/shop">
+        <img slot="icon"
+             src="./assets/demo/icon_nav_article.png">
         <span slot="label">商品</span>
-      </tabbar-item> 
-      <tabbar-item  link="/mine">
-        <img slot="icon" src="./assets/demo/icon_nav_cell.png">
+      </tabbar-item>
+      <tabbar-item link="/mine">
+        <img slot="icon"
+             src="./assets/demo/icon_nav_cell.png">
         <span slot="label">我的</span>
-      </tabbar-item> 
+      </tabbar-item>
     </tabbar>
     <loading v-model="isLoading"></loading>
   </div>
@@ -56,6 +62,8 @@ export default {
   mounted: function () {
     var openId = sessionStorage.getItem('openid')
     console.log('在app.vue中的openid：' + openId)
+    console.log("tabbar: " + this.$refs.tabbar)
+    
   },
   methods: {
     onIndexChange: function () {},
@@ -63,7 +71,7 @@ export default {
   },
   data () {
     return {
-      reservationLink: '/reservation'
+      reservationLink: '/reservation',
     }
   },
   computed: {

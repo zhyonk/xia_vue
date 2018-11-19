@@ -2,13 +2,21 @@
     <div>
         <!-- <swiper :list="demo03_list" auto style="width:100%;margin:0 auto;" height="200px" dots-class="custom-bottom" dots-position="center"> </swiper>-->
         <!-- <swiper :list="demo02_list" style="width:85%;margin:0 auto;" :aspect-ratio="300/800" dots-position="center"></swiper> -->
-        <swiper :list="demo01_list" v-model="demo02_index" :min-moving-distance="150" @on-index-change="demo01_onIndexChange" style="z-index:1"></swiper>
+        <swiper :list="demo01_list"
+                v-model="demo02_index"
+                :min-moving-distance="150"
+                @on-index-change="demo01_onIndexChange"
+                style="z-index:1"></swiper>
         <div>
-            <sticky ref="sticky" :check-sticky-support="false" :disabled="disabled">
+            <sticky ref="sticky"
+                    :check-sticky-support="false"
+                    :disabled="disabled">
                 <div class="barberList_storeInfo">
                     <div class="container">
-                        <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);" :src="shopImg"></div>
-                        <a class="call" :href="shopHrefTel"></a>
+                        <div class="img am-clickable"><img style="background-color: rgb(204, 204, 204);"
+                                 :src="shopImg"></div>
+                        <a class="call"
+                           :href="shopHrefTel"></a>
                         <div class="content">
                             <div class="name">{{ shopName }}</div>
                             <div class="adress">{{ shopAddress }}</div>
@@ -19,16 +27,22 @@
                 </div>
             </sticky>
         </div>
-        <div id="taobao-best" style="width: 100%">
+        <div id="taobao-best"
+             style="width: 100%">
             <!-- Swiper -->
-            <div class="swiper-container show-swiper swiper-container-horizontal swiper-container-ios shejishi-container " style="z-index: 3">
-                <div class="swiper-wrapper shejishi-wrapper" style="transition-duration: 0ms; transform: translate3d(37px, 0px, 0px);">
-                    <div class="swiper-slide swiper-slide-active shejishi-slide" style="margin-right: 17px;">
-                        <div class="goods" style="transform: scale3d(1.1, 1.1, 1); transition-duration: 0ms;width: 158px;height:230px">
+            <div class="swiper-container show-swiper swiper-container-horizontal swiper-container-ios shejishi-container "
+                 style="z-index: 3">
+                <div class="swiper-wrapper shejishi-wrapper"
+                     style="transition-duration: 0ms; transform: translate3d(37px, 0px, 0px);">
+                    <div class="swiper-slide swiper-slide-active shejishi-slide"
+                         style="margin-right: 17px;">
+                        <div class="goods"
+                             style="transform: scale3d(1.1, 1.1, 1); transition-duration: 0ms;width: 158px;height:230px">
                             <a link="/reserveDetail">
                                 <div class="c-top">
                                     <div class="img">
-                                        <img src="../assets/uploads/001.jpg" width="100%">
+                                        <img src="../assets/uploads/001.jpg"
+                                             width="100%">
                                     </div>
                                 </div>
                                 <div class="detail">
@@ -44,8 +58,10 @@
 
                         </div>
                     </div>
-                    <div class="swiper-slide swiper-slide-next shejishi-slide" style="margin-right: 17px;">
-                        <div class="goods" style="transform: scale3d(1, 1, 1); transition-duration: 0ms;width: 158px;height:230px">
+                    <div class="swiper-slide swiper-slide-next shejishi-slide"
+                         style="margin-right: 17px;">
+                        <div class="goods"
+                             style="transform: scale3d(1, 1, 1); transition-duration: 0ms;width: 158px;height:230px">
                             <a href="#springUrl('/game/report/oWHgww6RA28kbYUwlwvhs64sw_9s')">
                                 <div class="c-top">
                                     <!--<div class="date">-->
@@ -55,7 +71,8 @@
                                     <!--<div class="oldday">十月廿八</div>-->
                                     <!--</div>-->
                                     <div class="img">
-                                        <img src="../assets/uploads/002.jpg" width="100%">
+                                        <img src="../assets/uploads/002.jpg"
+                                             width="100%">
                                     </div>
                                 </div>
                                 <div class="detail">
@@ -70,8 +87,10 @@
 
                         </div>
                     </div>
-                    <div class="swiper-slide shejishi-slide" style="margin-right: 17px;">
-                        <div class="goods" style="transform: scale3d(1, 1, 1); transition-duration: 0ms;width: 158px;height:230px">
+                    <div class="swiper-slide shejishi-slide"
+                         style="margin-right: 17px;">
+                        <div class="goods"
+                             style="transform: scale3d(1, 1, 1); transition-duration: 0ms;width: 158px;height:230px">
                             <a href="#">
                                 <div class="c-top">
                                     <!--<div class="date">-->
@@ -81,7 +100,8 @@
                                     <!--<div class="oldday">十月廿八</div>-->
                                     <!--</div>-->
                                     <div class="img">
-                                        <img src="../assets/uploads/001.jpg" width="100%">
+                                        <img src="../assets/uploads/001.jpg"
+                                             width="100%">
                                     </div>
                                 </div>
                                 <div class="detail">
@@ -96,8 +116,10 @@
                             </a>
                         </div>
                     </div>
-                    <div class="swiper-slide shejishi-slide" style="margin-right: 17px;">
-                        <div class="goods" style="transform: scale3d(1, 1, 1); transition-duration: 0ms;width: 158px;height:230px">
+                    <div class="swiper-slide shejishi-slide"
+                         style="margin-right: 17px;">
+                        <div class="goods"
+                             style="transform: scale3d(1, 1, 1); transition-duration: 0ms;width: 158px;height:230px">
                             <a href="#">
                                 <div class="c-top">
                                     <!--<div class="date">-->
@@ -107,7 +129,8 @@
                                     <!--<div class="oldday">十月廿八</div>-->
                                     <!--</div>-->
                                     <div class="img">
-                                        <img src="../assets/uploads/002.jpg" width="100%">
+                                        <img src="../assets/uploads/002.jpg"
+                                             width="100%">
                                     </div>
                                 </div>
                                 <div class="detail">
@@ -123,8 +146,10 @@
 
                         </div>
                     </div>
-                    <div class="swiper-slide shejishi-slide" style="margin-right: 17px;">
-                        <div class="goods" style="transform: scale3d(1, 1, 1); transition-duration: 0ms;width: 158px;height:230px">
+                    <div class="swiper-slide shejishi-slide"
+                         style="margin-right: 17px;">
+                        <div class="goods"
+                             style="transform: scale3d(1, 1, 1); transition-duration: 0ms;width: 158px;height:230px">
                             <a href="#">
                                 <div class="c-top">
                                     <!--<div class="date">-->
@@ -134,7 +159,8 @@
                                     <!--<div class="oldday">十月廿八</div>-->
                                     <!--</div>-->
                                     <div class="img">
-                                        <img src="../assets/uploads/001.jpg" width="100%">
+                                        <img src="../assets/uploads/001.jpg"
+                                             width="100%">
                                     </div>
                                 </div>
                                 <div class="detail">
@@ -149,20 +175,29 @@
                             </a>
                         </div>
                     </div>
-                    <div class="swiper-slide last-slide shejishi-slide" style="margin-right: 17px;">
+                    <div class="swiper-slide last-slide shejishi-slide"
+                         style="margin-right: 17px;">
                         <span class="icon"></span>
                         <p class="text">左滑查看更多</p>
                     </div>
                 </div>
             </div>
-            <div class="mask" style="z-index: 2"></div>
-            <div class=" shejishi-container swiper-container bg-swiper swiper-container-fade swiper-container-horizontal swiper-container-ios" style="position: absolute;z-index: 1">
-                <div class="swiper-wrapper" style="transition-duration: 0ms;">
-                    <div class="swiper-slide swiper-slide-active shejishi-slide" style="width: 320px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur001.jpg"></div>
-                    <div class="swiper-slide swiper-slide-next shejishi-slide" style="width: 320px; opacity: 0; transform: translate3d(-320px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur002.jpg"></div>
-                    <div class="swiper-slide shejishi-slide" style="width: 320px; opacity: 0; transform: translate3d(-640px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur003.jpg"></div>
-                    <div class="swiper-slide shejishi-slide" style="width: 320px; opacity: 0; transform: translate3d(-1280px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur004.jpg"></div>
-                    <div class="swiper-slide shejishi-slide" style="width: 320px; opacity: 0; transform: translate3d(-1920px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur005.jpg"></div>
+            <div class="mask"
+                 style="z-index: 2"></div>
+            <div class=" shejishi-container swiper-container bg-swiper swiper-container-fade swiper-container-horizontal swiper-container-ios"
+                 style="position: absolute;z-index: 1">
+                <div class="swiper-wrapper"
+                     style="transition-duration: 0ms;">
+                    <div class="swiper-slide swiper-slide-active shejishi-slide"
+                         style="width: 320px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur001.jpg"></div>
+                    <div class="swiper-slide swiper-slide-next shejishi-slide"
+                         style="width: 320px; opacity: 0; transform: translate3d(-320px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur002.jpg"></div>
+                    <div class="swiper-slide shejishi-slide"
+                         style="width: 320px; opacity: 0; transform: translate3d(-640px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur003.jpg"></div>
+                    <div class="swiper-slide shejishi-slide"
+                         style="width: 320px; opacity: 0; transform: translate3d(-1280px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur004.jpg"></div>
+                    <div class="swiper-slide shejishi-slide"
+                         style="width: 320px; opacity: 0; transform: translate3d(-1920px, 0px, 0px); transition-duration: 0ms;"><img src="../assets/uploads/blur005.jpg"></div>
 
                 </div>
             </div>
@@ -181,16 +216,23 @@
         </yd-list-item>
     </yd-list> -->
         <div class="barberList_ul1">
-            <scroller style="position: relative;" :on-refresh="refresh" :on-infinite="infinite" :noDataText="noDataText">
+            <scroller style="position: relative;"
+                      :on-refresh="refresh"
+                      :on-infinite="infinite"
+                      :noDataText="noDataText">
                 <div style="height: 1px;"></div>
-                <li class="am-clickable" v-for="i in listdata" :key=i.opneId>
+                <li class="am-clickable"
+                    v-for="i in listdata"
+                    :key=i.opneId>
                     <div class="l1">
                         <div class="img am-clickable">
-                            <img style="background-color: rgb(204, 204, 204);" v-bind:src="i.headImgUrl">
+                            <img style="background-color: rgb(204, 204, 204);"
+                                 v-bind:src="i.headImgUrl">
                         </div>
                         <div class="name">{{ i.userName }}</div>
                         <div class="level">{{ i.positionName }}</div>
-                        <div class="price_label" style="display: block;">
+                        <div class="price_label"
+                             style="display: block;">
                             <span class="label">剪发价</span>
                             <span class="price">￥
                                 <strong>{{ i.productPrice }}</strong>
@@ -200,7 +242,9 @@
                     <div class="l2">
                         <div class="reservation_btn am-clickable">预约</div>
                         <div class="tags">
-                            <span class="tag" v-for="tag in i.tagNameList" :key="tag.userTagId">{{tag.tagName}}</span>
+                            <span class="tag"
+                                  v-for="tag in i.tagNameList"
+                                  :key="tag.userTagId">{{tag.tagName}}</span>
                         </div>
                         <div class="numbers">
                             <div class="comment">
