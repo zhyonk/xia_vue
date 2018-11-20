@@ -109,108 +109,141 @@
         <div class="popup2">
           <van-tabs v-model="active"
                     swipeable>
-            <van-tab v-for="index in 10"
+            <van-tab v-for="index in 3"
                      :key="index"
                      :title="'选项 ' + index"
                      type="line">
               <div class="reservation_timeArea">
-                <div class="timeHead">
-                  <div class="text">上午</div>
-                </div>
-                <div class="timeList">
-                  <ul>
-                    <li>
-                      <div class="timeBtn am-clickable timepassed">10:00</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable timepassed">10:30</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable timepassed">11:00</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable timepassed">11:30</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable timepassed">12:00</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable timepassed">12:30</div>
-                    </li>
-                  </ul>
-                  <div class="clear"></div>
-                </div>
-                <div class="timeHead">
-                  <div class="text">下午</div>
-                </div>
-                <div class="timeList">
-                  <ul>
-                    <li>
-                      <div class="timeBtn am-clickable timepassed">13:00</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable timepassed">13:30</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable timepassed">14:00</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable timepassed">14:30</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable timepassed">15:00</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable timepassed">15:30</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable timepassed">16:00</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable selected">16:30</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable">17:00</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable">17:30</div>
-                    </li>
-                  </ul>
-                  <div class="clear"></div>
-                </div>
-                <div class="timeHead">
-                  <div class="text">晚上</div>
-                </div>
-                <div class="timeList">
-                  <ul>
-                    <li>
-                      <div class="timeBtn am-clickable">18:00</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable">18:30</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable">19:00</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable">19:30</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable">20:00</div>
-                    </li>
-                    <li>
-                      <div class="timeBtn am-clickable">20:30</div>
-                    </li>
-                  </ul>
-                  <div class="clear"></div>
-                </div>
+                <checker default-item-class="timeBtn"
+                         selected-item-class="selected"
+                         disabled-item-class="timepassed">
+                  <div class="timeHead">
+                    <div class="text">上午</div>
+                  </div>
+
+                  <div class="timeList">
+                    <ul>
+                      <li>
+                        <checker-item value='10:00'
+                                      @on-item-click="onItemClick">10:00</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='10:30'
+                                      @on-item-click="onItemClick">10:30</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='11:00'
+                                      @on-item-click="onItemClick">11:00</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='11:30'
+                                      @on-item-click="onItemClick">11:30</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='12:00'
+                                      @on-item-click="onItemClick">12:00</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='12:30'
+                                      @on-item-click="onItemClick">12:30</checker-item>
+                      </li>
+                    </ul>
+
+                    <div class="clear"></div>
+                  </div>
+                  <div class="timeHead">
+                    <div class="text">下午</div>
+                  </div>
+                  <div class="timeList">
+                    <ul>
+                      <li>
+                        <checker-item value='13:00'
+                                      @on-item-click="onItemClick">13:00</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='13:30'
+                                      @on-item-click="onItemClick">13:30</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='14:00'
+                                      @on-item-click="onItemClick">14:00</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='14:30'
+                                      @on-item-click="onItemClick">14:30</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='15:00'
+                                      @on-item-click="onItemClick">15:00</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='15:30'
+                                      @on-item-click="onItemClick">15:30</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='16:00'
+                                      @on-item-click="onItemClick">16:00</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='16:30'
+                                      @on-item-click="onItemClick">16:30</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='17:00'
+                                      @on-item-click="onItemClick">17:00</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='17:30'
+                                      @on-item-click="onItemClick">17:30</checker-item>
+                      </li>
+                    </ul>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="timeHead">
+                    <div class="text">晚上</div>
+                  </div>
+                  <div class="timeList">
+                    <ul>
+                      <li>
+                        <checker-item value='18:00'
+                                      @on-item-click="onItemClick">18:00</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='18:30'
+                                      @on-item-click="onItemClick">18:30</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='19:00'
+                                      @on-item-click="onItemClick">19:00</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='19:30'
+                                      @on-item-click="onItemClick">19:30</checker-item>
+                      </li>
+                      <li>
+                        <checker-item disabled
+                                      value='20:00'
+                                      @on-item-click="onItemClick">20:00</checker-item>
+                      </li>
+                      <li>
+                        <checker-item value='20:30'
+                                      @on-item-click="onItemClick">20:30</checker-item>
+                      </li>
+                    </ul>
+                    <div class="clear"></div>
+                  </div>
+                </checker>
               </div>
             </van-tab>
           </van-tabs>
         </div>
-        <van-submit-bar :price="3050"
-                        button-text="提交订单"
-                        @submit="onSubmit" />
+        <van-submit-bar button-text="立即预约"
+                        @submit="onSubmit">
+          <span style="padding-left: 50px;">
+            您预约的时间为:
+            <span style="color: #ff2146;">{{leftText}}</span>
+          </span>
+        </van-submit-bar>
       </popup>
     </div>
     <van-goods-action>
@@ -220,6 +253,10 @@
                                 primary
                                 @click.native="reservePane = true" />
     </van-goods-action>
+    <toast v-model="timeReserved"
+           @on-hide="onHide"
+           type="text"
+           width="20em">{{clickTime}}已经被预约</toast>
   </div>
 
 </template>
@@ -231,7 +268,7 @@
 // import net from '../utils/net'
 // import { XHeader,Tabbar, TabbarItem,Popup,TransferDom,Tab,TabItem,Toast } from 'vux'
 // import auth from '../aouth/auth'
-import { XHeader,Tabbar, TabbarItem,Popup,TransferDom,Toast,dateFormat } from 'vux'
+import { XHeader,Tabbar, TabbarItem,Popup,TransferDom,Toast,dateFormat,Checker,CheckerItem } from 'vux'
 import store from '@/store/store'
 import * as types from '@/store/types'
 // import { Button, Cell } from 'vant'
@@ -259,13 +296,19 @@ export default {
     TabbarItem,
     Popup,
     Toast,
-    dateFormat
+    dateFormat,
+    Checker,
+    CheckerItem
   },
   data () {
     return {
       isHide:true,
       reservePane:false,
-      active: 2
+      active: 2,
+      demo5:1,
+      timeReserved:false,
+      clickTime:'_ _:_ _',
+      leftText:'_ _:_ _'
     }
   },
   mounted: function () {
@@ -275,6 +318,9 @@ export default {
     console.log(dateFormat(new Date(), 'MM/DD'))
   },
   methods: {
+    onHide () {
+      console.log('on hide')
+    },
     onSubmit(){
       console.log("click")
     },
@@ -284,8 +330,14 @@ export default {
     onClickBigBtn() {
       Toast('点击按钮');
     },
-    onItemClick(){
-      console.log('点击按钮');
+    onItemClick (value, disabled) {
+      this.clickTime = value
+      this.leftText = value
+      console.log(value, disabled)
+      if (disabled) {
+        this.timeReserved = true
+        this.leftText = '_ _:_ _'
+      }
     }
     
   }
@@ -386,13 +438,27 @@ ul {
     left: 50%;
     margin-left: -20px;
 }
-/* .reservation_timeArea .timeList .timeBtn.selected {
-    background-color: #ff2146;
-}
 .reservation_timeArea .timeList .timeBtn.selected{
   border-color: #ff2146;
-} */
-/* .reservation_timeArea .timeList .timeBtn.selected{
+}
+.reservation_timeArea .timeList .timeBtn.selected {
+    border-color: #ff2146;
+    background: #ff2146;
+    color: #fff;
+}
+.reservation_timeArea .timeList .timeBtn {
+    height: 30px;
+    margin: 0 10px;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 30px;
+    font-size: 12px;
+    position: relative;
+    display: block;
+}
+.reservation_timeArea .timeList .timeBtn.selected::after {
     content: "";
     height: 15px;
     width: 15px;
@@ -401,5 +467,8 @@ ul {
     position: absolute;
     right: -7px;
     bottom: -4px;
-} */
+}
+.van-submit-bar__price {
+    display: none;
+}
 </style>
